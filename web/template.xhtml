@@ -13,18 +13,20 @@
 
     <h:body>
         <div class="container">
-
+            
             <div class="navbar">
                 <div class="navbar-inner">
                     <h:link outcome="/index" value="MSc Ideas Search" class="brand"/>
                     <ul class="nav">
                         <li></li>
-                        <li><h:link outcome="/ideas/List" value="Submit Idea"/></li>
-                        <li><h:link outcome="/people/List" value="Register"/></li>
+                        <li><h:link outcome="/ideas/Create" value="Submit Idea"/></li>
+                        <li><h:link outcome="/people/Create" value="Register"/></li>
                     </ul>
                 </div>
             </div>
-
+            
+            <h1><ui:insert name="title">Default Title</ui:insert></h1>
+            
             <div class="row">
                 <div class="span8">
                     <p>
@@ -34,11 +36,28 @@
                 <div class=" offset1 span3">
 
                     <ul class="nav nav-list">
-                        <li class="nav-header">Account Info</li>
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Library</a></li>
+                        <li class="nav-header">Account</li>
+                        <li><a href="#">Overview</a></li>
+                        <li><a href="#">Register</a></li>
+                    </ul>
+                    
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Ideas</li>
+                        <li><h:link outcome="/ideas/List" value="List"/></li>
+                        <li><h:link outcome="/ideas/Create" value="Submit Idea"/></li>
+                    </ul>
+                    
+                    <ul class="nav nav-list">
+                        <li class="nav-header">People</li>
+                        <li><h:link outcome="/people/List" value="List"/></li>
+                        <li><h:link outcome="/people/Create" value="Register"/></li>
                     </ul>
                 </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="container">
+                <p>By 447955 for ENTWA</p>
             </div>
         </div>
         <!--<h:outputScript name="js/jquery-1.9.1.min.js" />
