@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateIdeasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    
+                    <h:outputLabel value="#{bundle.CreateIdeasLabel_title}" for="title" />
+                    <h:inputText id="title" value="#{ideasController.selected.title}" title="#{bundle.CreateIdeasTitle_title}" required="true" requiredMessage="#{bundle.CreateIdeasRequiredMessage_title}"/>
+                    <h:outputLabel value="#{bundle.CreateIdeasLabel_description}" for="description" />
+                    <h:inputTextarea rows="4" cols="30" id="description" value="#{ideasController.selected.description}" title="#{bundle.CreateIdeasTitle_description}" required="true" requiredMessage="#{bundle.CreateIdeasRequiredMessage_description}"/>
+                    <h:outputLabel value="#{bundle.CreateIdeasLabel_aimsAndObjectives}" for="aimsAndObjectives" />
+                    <h:inputTextarea rows="4" cols="30" id="aimsAndObjectives" value="#{ideasController.selected.aimsAndObjectives}" title="#{bundle.CreateIdeasTitle_aimsAndObjectives}" />
+                    <h:outputLabel value="#{bundle.CreateIdeasLabel_academicQuestion}" for="academicQuestion" />
+                    <h:inputTextarea rows="4" cols="30" id="academicQuestion" value="#{ideasController.selected.academicQuestion}" title="#{bundle.CreateIdeasTitle_academicQuestion}" />
+                    <h:outputLabel value="#{bundle.CreateIdeasLabel_anticipatedDeliverables}" for="anticipatedDeliverables" />
+                    <h:inputTextarea rows="4" cols="30" id="anticipatedDeliverables" value="#{ideasController.selected.anticipatedDeliverables}" title="#{bundle.CreateIdeasTitle_anticipatedDeliverables}" />
+                    
+                    <h:outputLabel value="#{bundle.CreateIdeasLabel_status}" for="status"  />
+                    <h:selectOneMenu value="#{ideasController.selected.status}"  id="status" required="true" requiredMessage="#{bundle.CreateIdeasRequiredMessage_status}">
+                            <f:selectItem itemValue="Pending" itemLabel="Pending" />
+                            <f:selectItem itemValue="Available" itemLabel="Available" />
+                            <f:selectItem itemValue="Closed" itemLabel="Closed" />
+                    </h:selectOneMenu>
+                    
+                    <h:outputLabel value="#{bundle.CreateIdeasLabel_moderator}" for="moderator" />
+                    <h:selectOneMenu id="moderator" value="#{ideasController.selected.moderator}" title="#{bundle.CreateIdeasTitle_moderator}" >
+                        <f:selectItems value="#{peopleController.getByTypeAvailableSelectOne('Staff')}"/>
+                    </h:selectOneMenu>
+                    
+                    <h:outputLabel value="#{bundle.CreateIdeasLabel_student}" for="student" />
+                    <h:selectOneMenu id="student" value="#{ideasController.selected.student}" title="#{bundle.CreateIdeasTitle_student}" >
+                        <f:selectItems value="#{peopleController.getByTypeAvailableSelectOne('Student')}"/>
+                    </h:selectOneMenu>
+                    
+                    <h:outputLabel value="#{bundle.CreateIdeasLabel_organisation}" for="organisation" />
+                    <h:selectOneMenu id="organisation" value="#{ideasController.selected.organisation}" title="#{bundle.CreateIdeasTitle_organisation}" >
+                        <f:selectItems value="#{peopleController.getByTypeAvailableSelectOne('Organisation')}"/>
+                    </h:selectOneMenu>
+                    
+                    <h:outputLabel value="#{bundle.CreateIdeasLabel_submitter}" for="submitter" />
+                    <h:selectOneMenu id="submitter" value="#{ideasController.selected.submitter}" title="#{bundle.CreateIdeasTitle_submitter}" >
+                        <f:selectItems value="#{peopleController.getItemsAvailableSelectOne()}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ideasController.create}" value="#{bundle.CreateIdeasSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{ideasController.prepareList}" value="#{bundle.CreateIdeasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateIdeasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePeopleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    
+                    <h:outputLabel value="#{bundle.CreatePeopleLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{peopleController.selected.name}" title="#{bundle.CreatePeopleTitle_name}" required="true" requiredMessage="#{bundle.CreatePeopleRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.CreatePeopleLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{peopleController.selected.email}" title="#{bundle.CreatePeopleTitle_email}" required="true" requiredMessage="#{bundle.CreatePeopleRequiredMessage_email}"/>
+                    <h:outputLabel value="#{bundle.CreatePeopleLabel_type}" for="type" />
+                    <h:selectOneMenu id="type" value="#{peopleController.selected.type}" title="#{bundle.CreatePeopleTitle_type}" required="true" requiredMessage="#{bundle.CreatePeopleRequiredMessage_type}">
+                            <f:selectItem itemValue="Student" itemLabel="Student" />
+                            <f:selectItem itemValue="Staff" itemLabel="Staff" />
+                            <f:selectItem itemValue="Organisation" itemLabel="Organisation" />
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePeopleLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{peopleController.selected.password}" title="#{bundle.CreatePeopleTitle_password}" required="true" requiredMessage="#{bundle.CreatePeopleRequiredMessage_password}"/>
+                </h:panelGrid>
+                <h:panelGrid columns="2" class="org_details">
+                        <h:outputLabel value="#{bundle.CreatePeopleLabel_orgName}" for="orgName" />
+                        <h:inputText id="orgName" value="#{peopleController.selected.orgName}" title="#{bundle.CreatePeopleTitle_orgName}" />
+                        <h:outputLabel value="#{bundle.CreatePeopleLabel_orgDescription}" for="orgDescription" />
+                        <h:inputTextarea rows="4" cols="30" id="orgDescription" value="#{peopleController.selected.orgDescription}" title="#{bundle.CreatePeopleTitle_orgDescription}" />
+                        <h:outputLabel value="#{bundle.CreatePeopleLabel_orgPhoneNumber}" for="orgPhoneNumber" />
+                        <h:inputText id="orgPhoneNumber" value="#{peopleController.selected.orgPhoneNumber}" title="#{bundle.CreatePeopleTitle_orgPhoneNumber}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{peopleController.create}" value="#{bundle.CreatePeopleSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{peopleController.prepareList}" value="#{bundle.CreatePeopleShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePeopleIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

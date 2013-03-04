@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPeopleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPeopleLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{peopleController.selected.id}" title="#{bundle.EditPeopleTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditPeopleLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{peopleController.selected.name}" title="#{bundle.EditPeopleTitle_name}" required="true" requiredMessage="#{bundle.EditPeopleRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.EditPeopleLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{peopleController.selected.email}" title="#{bundle.EditPeopleTitle_email}" required="true" requiredMessage="#{bundle.EditPeopleRequiredMessage_email}"/>
+                    <h:outputLabel value="#{bundle.EditPeopleLabel_type}" for="type" />
+                    <h:inputText id="type" value="#{peopleController.selected.type}" title="#{bundle.EditPeopleTitle_type}" required="true" requiredMessage="#{bundle.EditPeopleRequiredMessage_type}"/>
+                    <h:outputLabel value="#{bundle.EditPeopleLabel_orgName}" for="orgName" />
+                    <h:inputText id="orgName" value="#{peopleController.selected.orgName}" title="#{bundle.EditPeopleTitle_orgName}" />
+                    <h:outputLabel value="#{bundle.EditPeopleLabel_orgDescription}" for="orgDescription" />
+                    <h:inputTextarea rows="4" cols="30" id="orgDescription" value="#{peopleController.selected.orgDescription}" title="#{bundle.EditPeopleTitle_orgDescription}" />
+                    <h:outputLabel value="#{bundle.EditPeopleLabel_orgPhoneNumber}" for="orgPhoneNumber" />
+                    <h:inputText id="orgPhoneNumber" value="#{peopleController.selected.orgPhoneNumber}" title="#{bundle.EditPeopleTitle_orgPhoneNumber}" />
+                    <h:outputLabel value="#{bundle.EditPeopleLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{peopleController.selected.password}" title="#{bundle.EditPeopleTitle_password}" required="true" requiredMessage="#{bundle.EditPeopleRequiredMessage_password}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{peopleController.update}" value="#{bundle.EditPeopleSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPeopleViewLink}"/>
+                <br />
+                <h:commandLink action="#{peopleController.prepareList}" value="#{bundle.EditPeopleShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPeopleIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

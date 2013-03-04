@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditIdeasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditIdeasLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{ideasController.selected.id}" title="#{bundle.EditIdeasTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditIdeasLabel_title}" for="title" />
+                    <h:inputText id="title" value="#{ideasController.selected.title}" title="#{bundle.EditIdeasTitle_title}" required="true" requiredMessage="#{bundle.EditIdeasRequiredMessage_title}"/>
+                    <h:outputLabel value="#{bundle.EditIdeasLabel_description}" for="description" />
+                    <h:inputTextarea rows="4" cols="30" id="description" value="#{ideasController.selected.description}" title="#{bundle.EditIdeasTitle_description}" required="true" requiredMessage="#{bundle.EditIdeasRequiredMessage_description}"/>
+                    <h:outputLabel value="#{bundle.EditIdeasLabel_aimsAndObjectives}" for="aimsAndObjectives" />
+                    <h:inputTextarea rows="4" cols="30" id="aimsAndObjectives" value="#{ideasController.selected.aimsAndObjectives}" title="#{bundle.EditIdeasTitle_aimsAndObjectives}" />
+                    <h:outputLabel value="#{bundle.EditIdeasLabel_academicQuestion}" for="academicQuestion" />
+                    <h:inputTextarea rows="4" cols="30" id="academicQuestion" value="#{ideasController.selected.academicQuestion}" title="#{bundle.EditIdeasTitle_academicQuestion}" />
+                    <h:outputLabel value="#{bundle.EditIdeasLabel_anticipatedDeliverables}" for="anticipatedDeliverables" />
+                    <h:inputTextarea rows="4" cols="30" id="anticipatedDeliverables" value="#{ideasController.selected.anticipatedDeliverables}" title="#{bundle.EditIdeasTitle_anticipatedDeliverables}" />
+                    <h:outputLabel value="#{bundle.EditIdeasLabel_status}" for="status" />
+                    <h:inputText id="status" value="#{ideasController.selected.status}" title="#{bundle.EditIdeasTitle_status}" required="true" requiredMessage="#{bundle.EditIdeasRequiredMessage_status}"/>
+                    <h:outputLabel value="#{bundle.EditIdeasLabel_dateSubmitted}" for="dateSubmitted" />
+                    <h:inputText id="dateSubmitted" value="#{ideasController.selected.dateSubmitted}" title="#{bundle.EditIdeasTitle_dateSubmitted}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditIdeasLabel_moderator}" for="moderator" />
+                    <h:selectOneMenu id="moderator" value="#{ideasController.selected.moderator}" title="#{bundle.EditIdeasTitle_moderator}" >
+                        <f:selectItems value="#{peopleController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditIdeasLabel_submitter}" for="submitter" />
+                    <h:selectOneMenu id="submitter" value="#{ideasController.selected.submitter}" title="#{bundle.EditIdeasTitle_submitter}" >
+                        <f:selectItems value="#{peopleController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditIdeasLabel_student}" for="student" />
+                    <h:selectOneMenu id="student" value="#{ideasController.selected.student}" title="#{bundle.EditIdeasTitle_student}" >
+                        <f:selectItems value="#{peopleController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{ideasController.update}" value="#{bundle.EditIdeasSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditIdeasViewLink}"/>
+                <br />
+                <h:commandLink action="#{ideasController.prepareList}" value="#{bundle.EditIdeasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditIdeasIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
