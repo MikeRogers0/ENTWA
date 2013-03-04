@@ -5,9 +5,11 @@
 package entwa.beans;
 
 import entwa.entities.Ideas;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -27,4 +29,9 @@ public class IdeasFacade extends AbstractFacade<Ideas> {
         super(Ideas.class);
     }
     
+    public List findByStatus(String status) {
+        TypedQuery <Ideas> query = em.createNamedQuery("Ideas.findByStatus", Ideas.class).setParameter("status", status); 
+        List<Ideas> results = query.getResultList(); 
+        return  results;
+    }
 }

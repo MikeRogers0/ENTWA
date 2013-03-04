@@ -63,19 +63,19 @@ public class PeopleController implements Serializable {
 
     public String prepareList() {
         recreateModel();
-        return "List";
+        return "/people/List";
     }
 
     public String prepareView() {
         current = (People) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+        return "/people/View";
     }
 
     public String prepareCreate() {
         current = new People();
         selectedItemIndex = -1;
-        return "Create";
+        return "/people/Create";
     }
 
     public String create() {
@@ -92,14 +92,14 @@ public class PeopleController implements Serializable {
     public String prepareEdit() {
         current = (People) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "Edit";
+        return "/people/Edit";
     }
 
     public String update() {
         try {
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PeopleUpdated"));
-            return "View";
+            return "/people/View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -112,7 +112,7 @@ public class PeopleController implements Serializable {
         performDestroy();
         recreatePagination();
         recreateModel();
-        return "List";
+        return "/people/List";
     }
 
     public String destroyAndView() {
@@ -120,7 +120,7 @@ public class PeopleController implements Serializable {
         recreateModel();
         updateCurrentItem();
         if (selectedItemIndex >= 0) {
-            return "View";
+            return "/people/View";
         } else {
             // all items were removed - go back to list
             recreateModel();
@@ -170,13 +170,13 @@ public class PeopleController implements Serializable {
     public String next() {
         getPagination().nextPage();
         recreateModel();
-        return "List";
+        return "/people/List";
     }
 
     public String previous() {
         getPagination().previousPage();
         recreateModel();
-        return "List";
+        return "/people/List";
     }
 
     public SelectItem[] getItemsAvailableSelectMany() {

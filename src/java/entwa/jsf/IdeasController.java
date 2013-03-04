@@ -63,19 +63,19 @@ public class IdeasController implements Serializable {
 
     public String prepareList() {
         recreateModel();
-        return "List";
+        return "/ideas/List";
     }
 
     public String prepareView() {
         current = (Ideas) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+        return "/ideas/View";
     }
 
     public String prepareCreate() {
         current = new Ideas();
         selectedItemIndex = -1;
-        return "Create";
+        return "/ideas/Create";
     }
 
     public String create() {
@@ -92,14 +92,14 @@ public class IdeasController implements Serializable {
     public String prepareEdit() {
         current = (Ideas) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "Edit";
+        return "/ideas/Edit";
     }
 
     public String update() {
         try {
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("IdeasUpdated"));
-            return "View";
+            return "/ideas/View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -112,7 +112,7 @@ public class IdeasController implements Serializable {
         performDestroy();
         recreatePagination();
         recreateModel();
-        return "List";
+        return "/ideas/List";
     }
 
     public String destroyAndView() {
@@ -120,11 +120,11 @@ public class IdeasController implements Serializable {
         recreateModel();
         updateCurrentItem();
         if (selectedItemIndex >= 0) {
-            return "View";
+            return "/ideas/View";
         } else {
             // all items were removed - go back to list
             recreateModel();
-            return "List";
+            return "/ideas/List";
         }
     }
 
@@ -170,13 +170,13 @@ public class IdeasController implements Serializable {
     public String next() {
         getPagination().nextPage();
         recreateModel();
-        return "List";
+        return "/ideas/List";
     }
 
     public String previous() {
         getPagination().previousPage();
         recreateModel();
-        return "List";
+        return "/ideas/List";
     }
 
     public SelectItem[] getItemsAvailableSelectMany() {
