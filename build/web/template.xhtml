@@ -5,17 +5,43 @@
       xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title><ui:insert name="title">Default Title</ui:insert></title>
-<h:outputStylesheet name="css/jsfcrud.css"/>
+        <title><ui:insert name="title">Default Title</ui:insert> - ANTWA</title>
+        <!--<h:outputStylesheet name="css/jsfcrud.css"/>-->
+        <h:outputStylesheet name="css/bootstrap.min.css"/>
+        <h:outputStylesheet name="css/style.css"/>
     </h:head>
 
     <h:body>
-        <h1>
-            <ui:insert name="title">Default Title</ui:insert>
-        </h1>
-        <p>
-            <ui:insert name="body">Default Body</ui:insert>
-        </p>
-    </h:body>
+        <div class="container">
 
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <h:link outcome="/index" value="MSc Ideas Search" class="brand"/>
+                    <ul class="nav">
+                        <li></li>
+                        <li><h:link outcome="/ideas/List" value="Submit Idea"/></li>
+                        <li><h:link outcome="/people/List" value="Register"/></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span8">
+                    <p>
+                        <ui:insert name="body">Default Body</ui:insert>
+                    </p>
+                </div>
+                <div class=" offset1 span3">
+
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Account Info</li>
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Library</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--<h:outputScript name="js/jquery-1.9.1.min.js" />
+        <h:outputScript name="js/script.js" />-->
+    </h:body>
 </html>
