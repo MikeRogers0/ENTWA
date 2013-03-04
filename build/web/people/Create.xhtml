@@ -14,7 +14,7 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <h:panelGrid columns="2" class="table table-striped">
                     
                     <h:outputLabel value="#{bundle.CreatePeopleLabel_name}" for="name" />
                     <h:inputText id="name" value="#{peopleController.selected.name}" title="#{bundle.CreatePeopleTitle_name}" required="true" requiredMessage="#{bundle.CreatePeopleRequiredMessage_name}"/>
@@ -29,7 +29,7 @@
                     <h:outputLabel value="#{bundle.CreatePeopleLabel_password}" for="password" />
                     <h:inputText id="password" value="#{peopleController.selected.password}" title="#{bundle.CreatePeopleTitle_password}" required="true" requiredMessage="#{bundle.CreatePeopleRequiredMessage_password}"/>
                 </h:panelGrid>
-                <h:panelGrid columns="2" class="org_details">
+                <h:panelGrid columns="2" class="org_details table table-striped">
                         <h:outputLabel value="#{bundle.CreatePeopleLabel_orgName}" for="orgName" />
                         <h:inputText id="orgName" value="#{peopleController.selected.orgName}" title="#{bundle.CreatePeopleTitle_orgName}" />
                         <h:outputLabel value="#{bundle.CreatePeopleLabel_orgDescription}" for="orgDescription" />
@@ -38,7 +38,7 @@
                         <h:inputText id="orgPhoneNumber" value="#{peopleController.selected.orgPhoneNumber}" title="#{bundle.CreatePeopleTitle_orgPhoneNumber}" />
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{peopleController.create}" value="#{bundle.CreatePeopleSaveLink}" />
+                <h:commandLink action="#{peopleController.create}" value="#{bundle.CreatePeopleSaveLink}" class="btn btn-primary" />
             </h:form>
         </ui:define>
     </ui:composition>

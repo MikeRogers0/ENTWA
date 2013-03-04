@@ -32,10 +32,7 @@
                     <h:outputLabel value="#{bundle.EditPeopleLabel_password}" for="password" />
                     <h:inputText id="password" value="#{peopleController.selected.password}" title="#{bundle.EditPeopleTitle_password}" required="true" requiredMessage="#{bundle.EditPeopleRequiredMessage_password}"/>
                 </h:panelGrid>
-                <h:commandLink action="#{peopleController.update}" value="#{bundle.EditPeopleSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditPeopleViewLink}"/>
+                <h:commandLink action="#{peopleController.update}" value="#{bundle.EditPeopleSaveLink}"  class="btn btn-primary" />
             </h:form>
         </ui:define>
     </ui:composition>

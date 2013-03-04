@@ -46,10 +46,7 @@
                         <f:selectItems value="#{peopleController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                 </h:panelGrid>
-                <h:commandLink action="#{ideasController.update}" value="#{bundle.EditIdeasSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditIdeasViewLink}"/>
+                <h:commandLink action="#{ideasController.update}" value="#{bundle.EditIdeasSaveLink}"  class="btn btn-primary" />
             </h:form>
         </ui:define>
     </ui:composition>
