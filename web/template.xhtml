@@ -16,7 +16,9 @@
             
             <div class="navbar">
                 <div class="navbar-inner">
-                    <h:link outcome="/index" value="MSc Ideas Search" class="brand"/>
+                    <h:form styleClass="form-inline">
+                        <h:commandLink action="#{ideasController.prepareHome}" value="MSc Ideas Search" class="brand" immediate="true"/>
+                    </h:form>
                     <ul class="nav">
                         <li></li>
                         <li><h:link outcome="/ideas/Create" value="Submit Idea"/></li>

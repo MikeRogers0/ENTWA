@@ -65,6 +65,11 @@ public class IdeasController implements Serializable {
         recreateModel();
         return "/ideas/List";
     }
+    
+    public String prepareHome() {
+        recreateModel();
+        return "/index";
+    }
 
     public String prepareView() {
         current = (Ideas) getItems().getRowData();

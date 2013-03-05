@@ -17,43 +17,17 @@
             </h:form>
             <h:form styleClass="jsfcrud_list_form">
                 <h:outputText escape="false" value="#{bundle.ListIdeasEmpty}" rendered="#{ideasController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{ideasController.items.rowCount > 0}">
-                    <h:dataTable value="#{ideasController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rules="all">
+                <h:panelGroup  rendered="#{ideasController.items.rowCount > 0}">
+                    <h:dataTable value="#{ideasController.items}" var="item" border="0" cellpadding="2" cellspacing="0" class="table-clear" rules="all">
                         <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListIdeasTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListIdeasTitle_title}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.title}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListIdeasTitle_description}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.description}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListIdeasTitle_dateSubmitted}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.dateSubmitted}">
+                            <h2><h:outputText value="#{item.title}"/></h2>
+                            <p><h:outputText value="#{item.description}"/></p>
+                            <p><small><h:outputText value="#{item.dateSubmitted}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{ideasController.prepareView}" value="#{bundle.ListIdeasViewLink}" immediate="true"/>
+                            </h:outputText></small></p>
+                            <h:commandLink action="#{ideasController.prepareView}" value="#{bundle.ListIdeasViewLink}" immediate="true" class="btn"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{ideasController.prepareEdit}" value="#{bundle.ListIdeasEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{ideasController.destroy}" value="#{bundle.ListIdeasDestroyLink}"/>
+                            <h:commandLink action="#{ideasController.prepareEdit}" value="#{bundle.ListIdeasEditLink}" class="btn"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
