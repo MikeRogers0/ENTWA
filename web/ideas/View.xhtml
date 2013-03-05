@@ -34,25 +34,15 @@
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:outputText>
                     <h:outputText value="#{bundle.ViewIdeasLabel_moderator}"/>
-                    <h:outputText value="#{ideasController.selected.moderator}" title="#{bundle.ViewIdeasTitle_moderator}"/>
+                    <h:outputText value="#{ideasController.selected.moderator.name}" title="#{bundle.ViewIdeasTitle_moderator}"/>
                     <h:outputText value="#{bundle.ViewIdeasLabel_submitter}"/>
-                    <h:outputText value="#{ideasController.selected.submitter}" title="#{bundle.ViewIdeasTitle_submitter}"/>
+                    <h:outputText value="#{ideasController.selected.submitter.name} (#{ideasController.selected.submitter.type})" title="#{bundle.ViewIdeasTitle_submitter}"/>
                     <h:outputText value="#{bundle.ViewIdeasLabel_student}"/>
-                    <h:outputText value="#{ideasController.selected.student}" title="#{bundle.ViewIdeasTitle_student}"/>
+                    <h:outputText value="#{ideasController.selected.student.name}" title="#{bundle.ViewIdeasTitle_student}"/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{ideasController.destroyAndView}" value="#{bundle.ViewIdeasDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewIdeasEditLink}"/>
-                <br />
-                <h:commandLink action="#{ideasController.prepareCreate}" value="#{bundle.ViewIdeasCreateLink}" />
-                <br />
-                <h:commandLink action="#{ideasController.prepareList}" value="#{bundle.ViewIdeasShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewIdeasIndexLink}"/>
-
+                <h:link outcome="Edit" value="#{bundle.ViewIdeasEditLink}" class="btn" />
+                <h:commandLink action="#{ideasController.destroyAndView}" value="#{bundle.ViewIdeasDestroyLink}" class="btn btn-danger" />
             </h:form>
         </ui:define>
     </ui:composition>
