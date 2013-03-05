@@ -8,9 +8,18 @@ body{
 }
 
 .navbar .form-inline{
-    margin: 0;
+    float:left;
+    overflow:hidden;
+    margin:0;
+}
+.navbar .form-inline .btn{
+    margin: 5px 20px 5px;
 }
 
 .table-clear{
     border:transparent;
+}
+
+.col2-spaced td{
+    width: 175px;
 }

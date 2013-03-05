@@ -19,11 +19,12 @@
                     <h:form styleClass="form-inline">
                         <h:commandLink action="#{ideasController.prepareHome}" value="MSc Ideas Search" class="brand" immediate="true"/>
                     </h:form>
-                    <ul class="nav">
-                        <li></li>
-                        <li><h:link outcome="/ideas/Create" value="Submit Idea"/></li>
-                        <li><h:link outcome="/people/Create" value="Register"/></li>
-                    </ul>
+                    <h:form styleClass="form-inline">
+                        <h:commandLink action="#{ideasController.prepareCreate}" value="Submit Idea" class="btn" immediate="true"/>
+                    </h:form>
+                    <h:form styleClass="form-inline">
+                        <h:commandLink action="#{peopleController.prepareCreate}" value="Register" class="btn" immediate="true"/>
+                    </h:form>
                 </div>
             </div>
             
@@ -62,7 +63,7 @@
                 <p>By 447955 for ENTWA</p>
             </div>
         </div>
-        <!--<h:outputScript name="js/jquery-1.9.1.min.js" />
-        <h:outputScript name="js/script.js" />-->
+        <h:outputScript name="js/jquery-1.9.1.min.js" />
+        <h:outputScript name="js/script.js" />
     </h:body>
 </html>

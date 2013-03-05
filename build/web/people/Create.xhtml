@@ -14,22 +14,22 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2" class="table table-striped">
+                <h:panelGrid columns="2" class="table table-striped col2-spaced">
                     
                     <h:outputLabel value="#{bundle.CreatePeopleLabel_name}" for="name" />
                     <h:inputText id="name" value="#{peopleController.selected.name}" title="#{bundle.CreatePeopleTitle_name}" required="true" requiredMessage="#{bundle.CreatePeopleRequiredMessage_name}"/>
                     <h:outputLabel value="#{bundle.CreatePeopleLabel_email}" for="email" />
                     <h:inputText id="email" value="#{peopleController.selected.email}" title="#{bundle.CreatePeopleTitle_email}" required="true" requiredMessage="#{bundle.CreatePeopleRequiredMessage_email}"/>
                     <h:outputLabel value="#{bundle.CreatePeopleLabel_type}" for="type" />
-                    <h:selectOneMenu id="type" value="#{peopleController.selected.type}" title="#{bundle.CreatePeopleTitle_type}" required="true" requiredMessage="#{bundle.CreatePeopleRequiredMessage_type}">
+                    <h:selectOneMenu id="type" value="#{peopleController.selected.type}" class="typeSecltor" title="#{bundle.CreatePeopleTitle_type}" required="true" requiredMessage="#{bundle.CreatePeopleRequiredMessage_type}">
                             <f:selectItem itemValue="Student" itemLabel="Student" />
                             <f:selectItem itemValue="Staff" itemLabel="Staff" />
                             <f:selectItem itemValue="Organisation" itemLabel="Organisation" />
                     </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.CreatePeopleLabel_password}" for="password" />
-                    <h:inputText id="password" value="#{peopleController.selected.password}" title="#{bundle.CreatePeopleTitle_password}" required="true" requiredMessage="#{bundle.CreatePeopleRequiredMessage_password}"/>
+                    <h:inputSecret id="password" value="#{peopleController.selected.password}" title="#{bundle.CreatePeopleTitle_password}" required="true" requiredMessage="#{bundle.CreatePeopleRequiredMessage_password}"/>
                 </h:panelGrid>
-                <h:panelGrid columns="2" class="org_details table table-striped">
+                <h:panelGrid columns="2" class="org_details table table-striped col2-spaced" style="display:none;">
                         <h:outputLabel value="#{bundle.CreatePeopleLabel_orgName}" for="orgName" />
                         <h:inputText id="orgName" value="#{peopleController.selected.orgName}" title="#{bundle.CreatePeopleTitle_orgName}" />
                         <h:outputLabel value="#{bundle.CreatePeopleLabel_orgDescription}" for="orgDescription" />
