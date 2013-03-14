@@ -35,4 +35,10 @@ public class PeopleFacade extends AbstractFacade<People> {
         return  results;
     }
     
+    public People findByEmailAndPassword(String email, String Password) {
+       /* TypedQuery <People> query = em.createNamedQuery("People.findByType", People.class).setParameter("email", email); 
+        People <People> results = query.find(entityClass, id); 
+        return  results;*/
+        return null;
+    }
 }
