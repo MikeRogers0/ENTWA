@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -26,12 +27,20 @@
                     <h:outputLabel value="#{bundle.EditIdeasLabel_anticipatedDeliverables}" for="anticipatedDeliverables" />
                     <h:inputTextarea rows="4" cols="30" id="anticipatedDeliverables" value="#{ideasController.selected.anticipatedDeliverables}" title="#{bundle.EditIdeasTitle_anticipatedDeliverables}" />
                     
-                    <h:outputLabel value="#{bundle.EditIdeasLabel_status}" for="status"  />
-                    <h:selectOneMenu value="#{ideasController.selected.status}"  id="status" required="true" requiredMessage="#{bundle.EditIdeasRequiredMessage_status}">
-                            <f:selectItem itemValue="Pending" itemLabel="Pending" />
-                            <f:selectItem itemValue="Available" itemLabel="Available" />
-                            <f:selectItem itemValue="Closed" itemLabel="Closed" />
-                    </h:selectOneMenu>
+                    <c:if test="#{peopleController.selected.type == 'Staff'}">
+                        <h:outputLabel value="#{bundle.EditIdeasLabel_status}" for="status"  />
+                        <h:selectOneMenu value="#{ideasController.selected.status}"  id="status" required="true" requiredMessage="#{bundle.EditIdeasRequiredMessage_status}">
+                                <f:selectItem itemValue="Pending" itemLabel="Pending" />
+                                <f:selectItem itemValue="Available" itemLabel="Available" />
+                                <f:selectItem itemValue="Closed" itemLabel="Closed" />
+                        </h:selectOneMenu>
+                    </c:if>
+                    <c:if test="#{peopleController.selected.type != 'Staff'}">
+                        <h:outputLabel value="#{bundle.EditIdeasLabel_status}" for="status"  />
+                        <h:selectOneMenu value="#{ideasController.selected.status}"  id="status" required="true" requiredMessage="#{bundle.EditIdeasRequiredMessage_status}">
+                                <f:selectItem itemValue="Pending" itemLabel="Pending" />
+                        </h:selectOneMenu>
+                    </c:if>
                     
                     <h:outputLabel value="#{bundle.EditIdeasLabel_moderator}" for="moderator" />
                     <h:selectOneMenu id="moderator" value="#{ideasController.selected.moderator}" title="#{bundle.EditIdeasTitle_moderator}" >
@@ -47,12 +56,8 @@
                     <h:selectOneMenu id="organisation" value="#{ideasController.selected.organisation}" title="#{bundle.EditIdeasTitle_organisation}" >
                         <f:selectItems value="#{peopleController.getByTypeAvailableSelectOne('Organisation')}"/>
                     </h:selectOneMenu>
-                    
-                    <h:outputLabel value="#{bundle.EditIdeasLabel_submitter}" for="submitter" />
-                    <h:selectOneMenu id="submitter" value="#{ideasController.selected.submitter}" title="#{bundle.EditIdeasTitle_submitter}" >
-                        <f:selectItems value="#{peopleController.getItemsAvailableSelectOne()}"/>
-                    </h:selectOneMenu>
                 </h:panelGrid>
+                <h:inputHidden id="submitter" value="#{peopleController.selected.id}"  />
                 <h:commandLink action="#{ideasController.update}" value="#{bundle.EditIdeasSaveLink}"  class="btn btn-primary" />
             </h:form>
         </ui:define>

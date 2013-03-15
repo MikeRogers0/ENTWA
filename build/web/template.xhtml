@@ -23,9 +23,19 @@
                     <h:form styleClass="form-inline">
                         <h:commandLink action="#{ideasController.prepareCreate}" value="Submit Idea" class="btn" immediate="true"/>
                     </h:form>
-                    <h:form styleClass="form-inline">
-                        <h:commandLink action="#{peopleController.prepareCreate}" value="Register" class="btn" immediate="true"/>
-                    </h:form>
+                    
+                    <c:if test="#{!empty peopleController.selected.name}">
+                        <h:form styleClass="form-inline">
+                            <h:commandLink action="#{peopleController.prepareAccount}" value="View Account" class="btn" immediate="true"/>
+                            <h:commandButton value="Logout" action="#{peopleController.logout}" class="btn btn-warning" />
+                        </h:form>
+                    </c:if>   
+                    <c:if test="#{empty peopleController.selected.name}">
+                        <h:form styleClass="form-inline">
+                            <h:commandLink action="#{peopleController.prepareCreate}" value="Register" class="btn" immediate="true"/>
+                        </h:form>
+                    </c:if>
+                    
                 </div>
             </div>
 
@@ -41,8 +51,8 @@
                     
                     <h:form id="accountForm">
                         <c:if test="#{!empty peopleController.selected.name}">
-                            You're logged in #{peopleController.selected.name} (#{peopleController.selected.type})!
-                            <h:commandButton value="Logout" action="#{peopleController.logout}" class="btn" />
+                            <p>Howdy <strong>#{peopleController.selected.name}</strong> (#{peopleController.selected.type})!</p>
+                            <p>You are assoicated with <em>x</em> ideas.</p>
                         </c:if>   
                         <c:if test="#{empty peopleController.selected.name}">
 

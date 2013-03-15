@@ -79,12 +79,16 @@ public class PeopleController implements Serializable {
         selectedItemIndex = -1;
         return "/people/Create";
     }
+    
+    public String prepareAccount() {
+        return "/people/account";
+    }
 
     public String create() {
         try {
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PeopleCreated"));
-            return prepareCreate();
+            return prepareAccount();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
