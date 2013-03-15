@@ -197,6 +197,10 @@ public class PeopleController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findByType(type), true);
     }
     
+    public SelectItem[] getByTypeAvailableWithUserSelected() {
+        return JsfUtil.getSelectItems(ejbFacade.findById(current.getId()), false);
+    }
+    
     /*
      * http://stackoverflow.com/questions/2206911/best-way-for-user-authentication-on-javaee-6-using-jsf-2-0/2207147#2207147
      * https://docs.jboss.org/webbeans/reference/current/en-US/html/example.html

@@ -57,8 +57,11 @@
                     <h:selectOneMenu id="organisation" value="#{ideasController.selected.organisation}" title="#{bundle.CreateIdeasTitle_organisation}" >
                         <f:selectItems value="#{peopleController.getByTypeAvailableSelectOne('Organisation')}"/>
                     </h:selectOneMenu>
+    
+                    <h:selectOneMenu id="submitter" class="hidden" value="#{ideasController.selected.submitter}" title="#{bundle.CreateIdeasTitle_submitter}" >
+                        <f:selectItems value="#{peopleController.getByTypeAvailableWithUserSelected()}"/>
+                    </h:selectOneMenu>
                 </h:panelGrid>
-                <h:inputHidden id="submitter" value="#{peopleController.selected.id}"  />
                 <h:commandLink action="#{ideasController.create}" value="#{bundle.CreateIdeasSaveLink}" class="btn btn-primary" />
             </h:form>
         </ui:define>

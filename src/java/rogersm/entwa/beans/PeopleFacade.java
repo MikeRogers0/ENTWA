@@ -35,6 +35,12 @@ public class PeopleFacade extends AbstractFacade<People> {
         return  results;
     }
     
+    public List findById(Integer id) {
+        TypedQuery <People> query = em.createNamedQuery("People.findById", People.class).setParameter("id", id); 
+        List<People> results = query.getResultList(); 
+        return  results;
+    }
+    
     public List findByEmailAndPassword(String email, String password) {
         List <People> results = em.createNamedQuery("People.findByEmailAndPassword", People.class).setParameter("email", email).setParameter("password", password).getResultList(); 
         return results;

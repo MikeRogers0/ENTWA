@@ -57,7 +57,6 @@
                         <f:selectItems value="#{peopleController.getByTypeAvailableSelectOne('Organisation')}"/>
                     </h:selectOneMenu>
                 </h:panelGrid>
-                <h:inputHidden id="submitter" value="#{peopleController.selected.id}"  />
                 <h:commandLink action="#{ideasController.update}" value="#{bundle.EditIdeasSaveLink}"  class="btn btn-primary" />
             </h:form>
         </ui:define>
