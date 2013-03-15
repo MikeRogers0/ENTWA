@@ -1,14 +1,13 @@
 package rogersm.entwa.jsf;
 
-import java.io.IOException;
 import rogersm.entwa.entities.People;
 import rogersm.entwa.jsf.util.JsfUtil;
 import rogersm.entwa.jsf.util.PaginationHelper;
 import rogersm.entwa.beans.PeopleFacade;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -20,9 +19,6 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 
 @ManagedBean(name = "peopleController")
 @SessionScoped
@@ -199,43 +195,37 @@ public class PeopleController implements Serializable {
     
     /*
      * http://stackoverflow.com/questions/2206911/best-way-for-user-authentication-on-javaee-6-using-jsf-2-0/2207147#2207147
+     * https://docs.jboss.org/webbeans/reference/current/en-US/html/example.html
      */
     private String email;
     private String password;
-    private String originalURL;
+    private List <People> results;
     
-    @PostConstruct
-    public void init() {
+    public String login(){ 
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        originalURL = (String) externalContext.getRequestMap().get(RequestDispatcher.FORWARD_REQUEST_URI);
-
-        if (originalURL == null) {
-            originalURL = externalContext.getRequestContextPath() + "/index.xhtml";
-        } else {
-            String originalQuery = (String) externalContext.getRequestMap().get(RequestDispatcher.FORWARD_QUERY_STRING);
-
-            if (originalQuery != null) {
-                originalURL += "?" + originalQuery;
-            }
+        try{
+            results = ejbFacade.findByEmailAndPassword(current.getEmail(), current.getPassword());
+        }catch(Exception e){
+            return "";
         }
-    }
-
-    public void login() throws IOException {
-        FacesContext context = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = context.getExternalContext();
-        HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
-
-        try {
-            request.login(email, password);
-            People user = ejbFacade.find(1);
-            externalContext.getSessionMap().put("email", email);
-            externalContext.redirect(originalURL);
-        } catch (ServletException e) {
-            // Handle unknown username/password in request.login().
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+        
+        if ( !results.isEmpty() ) {
+            current = results.get(0);
+            externalContext.getSessionMap().put("id", current.getId());
+            externalContext.getSessionMap().put("email", current.getEmail());
+            externalContext.getSessionMap().put("name", current.getName());
+            return "/people/account";
         }
+        return "";
     }
-
+    
+    public String logout(){
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        externalContext.invalidateSession();
+        current = null;
+        return "/people/logout";
+    }
+     
     @FacesConverter(forClass = People.class)
     public static class PeopleControllerConverter implements Converter {
 
