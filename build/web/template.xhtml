@@ -24,18 +24,19 @@
                         <h:commandLink action="#{ideasController.prepareCreate}" value="Submit Idea" class="btn" immediate="true"/>
                     </h:form>
                     
-                    <c:if test="#{!empty peopleController.selected.name}">
-                        <h:form styleClass="form-inline">
-                            <h:commandLink action="#{peopleController.prepareAccount}" value="View Account" class="btn" immediate="true"/>
-                            <h:commandButton value="Logout" action="#{peopleController.logout}" class="btn btn-warning" />
-                        </h:form>
-                    </c:if>   
-                    <c:if test="#{empty peopleController.selected.name}">
-                        <h:form styleClass="form-inline">
-                            <h:commandLink action="#{peopleController.prepareCreate}" value="Register" class="btn" immediate="true"/>
-                        </h:form>
-                    </c:if>
-                    
+                    <c:choose>
+                        <c:when test="#{!empty peopleController.selected.name}">
+                            <h:form styleClass="form-inline">
+                                <h:commandLink action="#{peopleController.prepareAccount}" value="View Account" class="btn" immediate="true"/>
+                                <h:commandButton value="Logout" action="#{peopleController.logout}" class="btn btn-warning" />
+                            </h:form>
+                        </c:when>   
+                        <c:otherwise>
+                            <h:form styleClass="form-inline">
+                                <h:commandLink action="#{peopleController.prepareCreate}" value="Register" class="btn" immediate="true"/>
+                            </h:form>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
 
@@ -50,24 +51,26 @@
                 <div class=" offset1 span3">
                     
                     <h:form id="accountForm">
-                        <c:if test="#{!empty peopleController.selected.name}">
-                            <p>Howdy <strong>#{peopleController.selected.name}</strong> (#{peopleController.selected.type})!</p>
-                            <p>You are assoicated with <em>x</em> ideas.</p>
-                        </c:if>   
-                        <c:if test="#{empty peopleController.selected.name}">
+                        <c:choose>
+                            <c:when test="#{!empty peopleController.selected.name}">
+                                <p>Howdy <strong>#{peopleController.selected.name}</strong> (#{peopleController.selected.type})!</p>
+                                <p>You are assoicated with <em>x</em> ideas.</p>
+                            </c:when>   
+                            <c:otherwise>
 
-                            <h:outputLabel for="email" value="Email" />
-                            <h:inputText id="email" value="#{peopleController.selected.email}" required="true" />
-                            <h:message for="email" />
-                            <br />
-                            <h:outputLabel for="password" value="Password" />
-                            <h:inputSecret id="password" value="#{peopleController.selected.password}" required="true" />
-                            <h:message for="password" />
-                            <br />
-                            <h:commandButton value="Login" action="#{peopleController.login}" class="btn"  />
-                            <h:messages globalOnly="true" />
+                                <h:outputLabel for="email" value="Email" />
+                                <h:inputText id="email" value="#{peopleController.selected.email}" required="true" />
+                                <h:message for="email" />
+                                <br />
+                                <h:outputLabel for="password" value="Password" />
+                                <h:inputSecret id="password" value="#{peopleController.selected.password}" required="true" />
+                                <h:message for="password" />
+                                <br />
+                                <h:commandButton value="Login" action="#{peopleController.login}" class="btn"  />
+                                <h:messages globalOnly="true" />
 
-                        </c:if>    
+                            </c:otherwise>
+                        </c:choose>
                     </h:form>
                 </div>
             </div>

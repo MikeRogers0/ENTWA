@@ -3,46 +3,78 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ViewIdeasTitle}"></h:outputText>
+            <h:outputText value="#{ideasController.selected.title}"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewIdeasLabel_id}"/>
-                    <h:outputText value="#{ideasController.selected.id}" title="#{bundle.ViewIdeasTitle_id}"/>
-                    <h:outputText value="#{bundle.ViewIdeasLabel_title}"/>
-                    <h:outputText value="#{ideasController.selected.title}" title="#{bundle.ViewIdeasTitle_title}"/>
+                <h:panelGrid columns="2" class="table table-striped">
                     <h:outputText value="#{bundle.ViewIdeasLabel_description}"/>
                     <h:outputText value="#{ideasController.selected.description}" title="#{bundle.ViewIdeasTitle_description}"/>
+                    
                     <h:outputText value="#{bundle.ViewIdeasLabel_aimsAndObjectives}"/>
                     <h:outputText value="#{ideasController.selected.aimsAndObjectives}" title="#{bundle.ViewIdeasTitle_aimsAndObjectives}"/>
+                    
                     <h:outputText value="#{bundle.ViewIdeasLabel_academicQuestion}"/>
                     <h:outputText value="#{ideasController.selected.academicQuestion}" title="#{bundle.ViewIdeasTitle_academicQuestion}"/>
+                    
                     <h:outputText value="#{bundle.ViewIdeasLabel_anticipatedDeliverables}"/>
                     <h:outputText value="#{ideasController.selected.anticipatedDeliverables}" title="#{bundle.ViewIdeasTitle_anticipatedDeliverables}"/>
+                    
                     <h:outputText value="#{bundle.ViewIdeasLabel_status}"/>
-                    <h:outputText value="#{ideasController.selected.status}" title="#{bundle.ViewIdeasTitle_status}"/>
+                    <h:outputText value="#{ideasController.selected.status}" title="#{bundle.ViewIdeasTitle_status}"/> 
+                    
                     <h:outputText value="#{bundle.ViewIdeasLabel_dateSubmitted}"/>
                     <h:outputText value="#{ideasController.selected.dateSubmitted}" title="#{bundle.ViewIdeasTitle_dateSubmitted}">
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:outputText>
-                    <h:outputText value="#{bundle.ViewIdeasLabel_moderator}"/>
-                    <h:outputText value="#{ideasController.selected.moderator.name}" title="#{bundle.ViewIdeasTitle_moderator}"/>
+                    
                     <h:outputText value="#{bundle.ViewIdeasLabel_submitter}"/>
                     <h:outputText value="#{ideasController.selected.submitter.name} (#{ideasController.selected.submitter.type})" title="#{bundle.ViewIdeasTitle_submitter}"/>
+                    
+                    <h:outputText value="#{bundle.ViewIdeasLabel_organisation}"/>
+                    <c:choose>
+                        <c:when test="#{empty ideasController.selected.organisation.orgName and peopleController.selected.type == 'Organisation'}">
+                            <h:commandLink action="#{bundle.ViewIdeasEditLink}" value="Become Organisation" class="btn" />
+                        </c:when>
+                        <c:otherwise>
+                            <h:outputText value="#{ideasController.selected.organisation.orgName}" title="#{bundle.ViewIdeasTitle_organisation}"/>
+                        </c:otherwise>
+                    </c:choose>
+                    
+                    <h:outputText value="#{bundle.ViewIdeasLabel_moderator}"/>
+                    <c:choose>
+                        <c:when test="#{empty ideasController.selected.moderator.name and peopleController.selected.type == 'Staff'}">
+                            <h:commandLink action="#{bundle.ViewIdeasEditLink}" value="Become Moderator" class="btn " />
+                        </c:when>
+                        <c:otherwise>
+                            <h:outputText value="#{ideasController.selected.moderator.name}" title="#{bundle.ViewIdeasTitle_moderator}"/>
+                        </c:otherwise>
+                    </c:choose>
+                    
                     <h:outputText value="#{bundle.ViewIdeasLabel_student}"/>
-                    <h:outputText value="#{ideasController.selected.student.name}" title="#{bundle.ViewIdeasTitle_student}"/>
+                    <c:choose>
+                        <c:when test="#{empty ideasController.selected.student.name and peopleController.selected.type == 'Student'}">
+                            <h:commandLink action="#{bundle.ViewIdeasEditLink}" value="Become Student" class="btn" />
+                        </c:when>
+                        <c:otherwise>
+                            <h:outputText value="#{ideasController.selected.student.name}" title="#{bundle.ViewIdeasTitle_student}"/>
+                        </c:otherwise>
+                    </c:choose>
                 </h:panelGrid>
                 <br />
                 <h:link outcome="Edit" value="#{bundle.ViewIdeasEditLink}" class="btn" />
+                
                 <h:commandLink action="#{ideasController.destroyAndView}" value="#{bundle.ViewIdeasDestroyLink}" class="btn btn-danger" />
+                <br />
+                <br />
             </h:form>
         </ui:define>
     </ui:composition>
