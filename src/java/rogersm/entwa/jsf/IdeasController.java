@@ -86,8 +86,8 @@ public class IdeasController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("IdeasCreated"));
-            return prepareCreate();
+            //JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("IdeasCreated"));
+            return "/ideas/View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
