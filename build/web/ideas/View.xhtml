@@ -27,7 +27,19 @@
 
                 <h:outputText value="#{bundle.ViewIdeasLabel_anticipatedDeliverables}"/>
                 <h:outputText value="#{ideasController.selected.anticipatedDeliverables}" title="#{bundle.ViewIdeasTitle_anticipatedDeliverables}"/>
-
+                
+                <c:if test="#{!empty ideasController.selected.organisation.name }">
+                    
+                    <h:outputText value="#{bundle.ViewPeopleLabel_orgName}"/>
+                    <h:outputText value="#{ideasController.selected.organisation.orgName}" title="#{bundle.ViewPeopleTitle_orgName}"/>
+                    
+                    <h:outputText value="#{bundle.ViewPeopleLabel_orgDescription}"/>
+                    <h:outputText value="#{ideasController.selected.organisation.orgDescription}" title="#{bundle.ViewPeopleTitle_orgDescription}"/>
+                    
+                    <h:outputText value="#{bundle.ViewPeopleLabel_orgPhoneNumber}"/>
+                    <h:outputText value="#{ideasController.selected.organisation.orgPhoneNumber}" title="#{bundle.ViewPeopleTitle_orgPhoneNumber}"/>
+                    
+                </c:if>
 
                 <h:outputText value="#{bundle.ViewIdeasLabel_status}"/>
                 <h:outputText value="#{ideasController.selected.status}" title="#{bundle.ViewIdeasTitle_status}"/>
