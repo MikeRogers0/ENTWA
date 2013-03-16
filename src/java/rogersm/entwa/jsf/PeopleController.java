@@ -58,6 +58,11 @@ public class PeopleController implements Serializable {
                 public DataModel createPageDataModel() {
                     return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
                 }
+
+                @Override
+                public DataModel searchPageDataModel(String search) {
+                    throw new UnsupportedOperationException("Not supported yet.");
+                }
             };
         }
         return pagination;

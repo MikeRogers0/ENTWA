@@ -14,6 +14,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
@@ -24,6 +25,7 @@ public class IdeasController implements Serializable {
 
     private Ideas current;
     private DataModel items = null;
+    private DataModel searchItems = null;
     @EJB
     private rogersm.entwa.beans.IdeasFacade ejbFacade;
     private PaginationHelper pagination;
@@ -55,6 +57,11 @@ public class IdeasController implements Serializable {
                 @Override
                 public DataModel createPageDataModel() {
                     return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                }
+
+                @Override
+                public DataModel searchPageDataModel(String search) {
+                    return new ListDataModel(getFacade().searchByTitle(search));
                 }
             };
         }
@@ -132,6 +139,32 @@ public class IdeasController implements Serializable {
             return "/ideas/List";
         }
     }
+    
+    /*
+     * The search stuff
+     * 
+     */
+    public String search(){
+        this.items = null;
+        return "/index";
+    }
+    
+    private String search = null;
+    
+    public String getSearch() {
+        return search;
+    }
+
+    public void setSearch(String search) {
+        this.search = search;
+    }
+    
+    public DataModel getSearchItems() {
+        if (search != null) {
+            searchItems = getPagination().searchPageDataModel(search);
+        }
+        return searchItems;
+    }
 
     private void performDestroy() {
         try {
@@ -191,6 +224,7 @@ public class IdeasController implements Serializable {
     public SelectItem[] getItemsAvailableSelectOne() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
+    
 
     @FacesConverter(forClass = Ideas.class)
     public static class IdeasControllerConverter implements Converter {
