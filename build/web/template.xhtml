@@ -20,17 +20,19 @@
                     <h:form styleClass="form-inline">
                         <h:commandLink action="#{ideasController.prepareHome}" value="MSc Ideas Search" class="brand" immediate="true"/>
                     </h:form>
-                    <h:form styleClass="form-inline">
-                        <h:commandButton action="#{ideasController.prepareCreate}" value="Submit Idea" class="btn" immediate="true"/>
-                    </h:form>
-                    
+                    <c:if test="#{!empty peopleController.selected.name}">
+                        <h:form styleClass="form-inline">
+                            <h:commandButton action="#{ideasController.prepareCreate}" value="Submit Idea" class="btn" immediate="true"/>
+                        </h:form>
+                    </c:if>
+
                     <c:choose>
                         <c:when test="#{!empty peopleController.selected.name}">
                             <h:form styleClass="form-inline">
                                 <h:commandButton action="#{peopleController.prepareAccount}" value="View Account" class="btn" immediate="true"/>
-                                <h:commandButton value="Logout" action="#{peopleController.logout}" class="btn btn-warning" />
+                                <h:commandButton value="Logout" action="#{peopleController.logout}" class="btn btn-danger" />
                             </h:form>
-                        </c:when>   
+                        </c:when>
                         <c:otherwise>
                             <h:form styleClass="form-inline">
                                 <h:commandLink action="#{peopleController.prepareCreate}" value="Register" class="btn" immediate="true"/>
@@ -49,12 +51,11 @@
                     </p>
                 </div>
                 <div class=" offset1 span3">
-                    
+
                     <h:form id="accountForm">
                         <c:choose>
                             <c:when test="#{!empty peopleController.selected.name}">
                                 <p>Howdy <strong>#{peopleController.selected.name}</strong> (#{peopleController.selected.type})!</p>
-                                <p>You are assoicated with <em>x</em> ideas.</p>
                             </c:when>   
                             <c:otherwise>
 
@@ -68,7 +69,10 @@
                                 <br />
                                 <h:commandButton value="Login" action="#{peopleController.login}" class="btn"  />
                                 <h:messages globalOnly="true" />
-
+                                
+                                <hr />
+                                
+                                <p>Note: To add idea to the database, you must be a signed in user.</p>
                             </c:otherwise>
                         </c:choose>
                     </h:form>
