@@ -121,10 +121,11 @@
             </h:panelGrid>
             <br />
             <h:form>
-                <c:if test="#{peopleController.selected.id == ideasController.selected.submitter.id 
+                <c:if test="#{!empty peopleController.selected.id and (
+                              peopleController.selected.id == ideasController.selected.submitter.id 
                               or peopleController.selected.id == ideasController.selected.moderator.id 
                               or peopleController.selected.id == ideasController.selected.student.id 
-                              or peopleController.selected.id == ideasController.selected.organisation.id}">
+                              or peopleController.selected.id == ideasController.selected.organisation.id)}">
                     <h:link outcome="Edit" value="#{bundle.ViewIdeasEditLink}" class="btn" />
                     <h:commandLink action="#{ideasController.destroyAndView}" value="#{bundle.ViewIdeasDestroyLink}" class="btn btn-danger" />
                 </c:if>
