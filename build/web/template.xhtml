@@ -21,13 +21,13 @@
                         <h:commandLink action="#{ideasController.prepareHome}" value="MSc Ideas Search" class="brand" immediate="true"/>
                     </h:form>
                     <h:form styleClass="form-inline">
-                        <h:commandLink action="#{ideasController.prepareCreate}" value="Submit Idea" class="btn" immediate="true"/>
+                        <h:commandButton action="#{ideasController.prepareCreate}" value="Submit Idea" class="btn" immediate="true"/>
                     </h:form>
                     
                     <c:choose>
                         <c:when test="#{!empty peopleController.selected.name}">
                             <h:form styleClass="form-inline">
-                                <h:commandLink action="#{peopleController.prepareAccount}" value="View Account" class="btn" immediate="true"/>
+                                <h:commandButton action="#{peopleController.prepareAccount}" value="View Account" class="btn" immediate="true"/>
                                 <h:commandButton value="Logout" action="#{peopleController.logout}" class="btn btn-warning" />
                             </h:form>
                         </c:when>   

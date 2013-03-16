@@ -67,7 +67,7 @@ public class Ideas implements Serializable {
     @Column(nullable = false, length = 255)
     private String status;
     @Column(name = "DATE_SUBMITTED")
-    @Temporal(TemporalType.TIME)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateSubmitted;
     @JoinColumn(name = "MODERATOR", referencedColumnName = "ID")
     @ManyToOne
@@ -153,6 +153,9 @@ public class Ideas implements Serializable {
     }
 
     public Date getDateSubmitted() {
+        if(dateSubmitted == null){
+            dateSubmitted = new Date();
+        }
         return dateSubmitted;
     }
 

@@ -14,67 +14,108 @@
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
+            <h:panelGrid columns="2" class="table table-striped">
+                <h:outputText value="#{bundle.ViewIdeasLabel_description}"/>
+                <h:outputText value="#{ideasController.selected.description}" title="#{bundle.ViewIdeasTitle_description}"/>
+
+                <h:outputText value="#{bundle.ViewIdeasLabel_aimsAndObjectives}"/>
+                <h:outputText value="#{ideasController.selected.aimsAndObjectives}" title="#{bundle.ViewIdeasTitle_aimsAndObjectives}"/>
+
+                <h:outputText value="#{bundle.ViewIdeasLabel_academicQuestion}"/>
+                <h:outputText value="#{ideasController.selected.academicQuestion}" title="#{bundle.ViewIdeasTitle_academicQuestion}"/>
+
+
+                <h:outputText value="#{bundle.ViewIdeasLabel_anticipatedDeliverables}"/>
+                <h:outputText value="#{ideasController.selected.anticipatedDeliverables}" title="#{bundle.ViewIdeasTitle_anticipatedDeliverables}"/>
+
+
+                <h:outputText value="#{bundle.ViewIdeasLabel_status}"/>
+                <h:outputText value="#{ideasController.selected.status}" title="#{bundle.ViewIdeasTitle_status}"/>
+
+                <h:outputText value="#{bundle.ViewIdeasLabel_dateSubmitted}"/>
+                <h:outputText value="#{ideasController.selected.dateSubmitted}" title="#{bundle.ViewIdeasTitle_dateSubmitted}">
+                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                </h:outputText>
+
+                <h:outputText value="#{bundle.ViewIdeasLabel_submitter}"/>
+                <h:outputLink value="mailto:#{ideasController.selected.submitter.email}">
+                    <h:outputText value="#{ideasController.selected.submitter.name} (#{ideasController.selected.submitter.type})" />
+                </h:outputLink>
+
+                <h:outputText value="#{bundle.ViewIdeasLabel_organisation}"/>
+                <c:choose>
+                    <c:when test="#{empty ideasController.selected.organisation.name and peopleController.selected.type == 'Organisation'}">
+                        <h:form>
+                            <h:commandLink action="#{ideasController.update}" value="Become Idea Organisation" class="btn" />
+                            <h:selectOneMenu id="student" class="hidden" value="#{ideasController.selected.organisation}" >
+                                <f:selectItems value="#{peopleController.getByTypeAvailableWithUserSelected()}"/>
+                            </h:selectOneMenu>
+                        </h:form>
+                    </c:when>
+                    <c:when test="#{empty ideasController.selected.organisation.name and peopleController.selected.type != 'Organisation'}">
+                        <h:outputText value=""/>
+                    </c:when>
+                    <c:otherwise>
+                        <h:outputLink value="mailto:#{ideasController.selected.organisation.email}">
+                            <h:outputText value="#{ideasController.selected.organisation.name} from #{ideasController.selected.organisation.orgName}" />
+                        </h:outputLink>
+                    </c:otherwise>
+                </c:choose>
+
+
+                <h:outputText value="#{bundle.ViewIdeasLabel_moderator}"/>
+                <c:choose>
+                    <c:when test="#{empty ideasController.selected.moderator.name and peopleController.selected.type == 'Staff'}">
+                        <h:form>
+                            <h:commandLink action="#{ideasController.update}" value="Become Idea Moderator" class="btn" />
+                            <h:selectOneMenu id="student" class="hidden" value="#{ideasController.selected.moderator}" >
+                                <f:selectItems value="#{peopleController.getByTypeAvailableWithUserSelected()}"/>
+                            </h:selectOneMenu>
+                        </h:form>
+                    </c:when>
+                    <c:when test="#{empty ideasController.selected.moderator.name and peopleController.selected.type != 'Staff'}">
+                        <h:outputText value=""/>
+                    </c:when>
+                    <c:otherwise>
+                        <h:outputLink value="mailto:#{ideasController.selected.moderator.email}">
+                            <h:outputText value="#{ideasController.selected.moderator.name}" />
+                        </h:outputLink>
+                    </c:otherwise>
+                </c:choose>
+
+
+
+                <h:outputText value="#{bundle.ViewIdeasLabel_student}"/>
+
+                <c:choose>
+                    <c:when test="#{empty ideasController.selected.student.name and peopleController.selected.type == 'Student'}">
+                        <h:form>
+                            <h:commandLink action="#{ideasController.update}" value="Become Idea Student" class="btn" />
+                            <h:selectOneMenu id="student" class="hidden" value="#{ideasController.selected.student}" >
+                                <f:selectItems value="#{peopleController.getByTypeAvailableWithUserSelected()}"/>
+                            </h:selectOneMenu>
+                        </h:form>
+                    </c:when>
+                    <c:when test="#{empty ideasController.selected.student.name and peopleController.selected.type != 'Student'}">
+                        <h:outputText value=""/>
+                    </c:when>
+                    <c:otherwise>
+                        <h:outputLink value="mailto:#{ideasController.selected.student.email}">
+                            <h:outputText value="#{ideasController.selected.student.name}" />
+                        </h:outputLink>
+                    </c:otherwise>
+                </c:choose>
+
+            </h:panelGrid>
+            <br />
             <h:form>
-                <h:panelGrid columns="2" class="table table-striped">
-                    <h:outputText value="#{bundle.ViewIdeasLabel_description}"/>
-                    <h:outputText value="#{ideasController.selected.description}" title="#{bundle.ViewIdeasTitle_description}"/>
-                    
-                    <h:outputText value="#{bundle.ViewIdeasLabel_aimsAndObjectives}"/>
-                    <h:outputText value="#{ideasController.selected.aimsAndObjectives}" title="#{bundle.ViewIdeasTitle_aimsAndObjectives}"/>
-                    
-                    <h:outputText value="#{bundle.ViewIdeasLabel_academicQuestion}"/>
-                    <h:outputText value="#{ideasController.selected.academicQuestion}" title="#{bundle.ViewIdeasTitle_academicQuestion}"/>
-                    
-                    <h:outputText value="#{bundle.ViewIdeasLabel_anticipatedDeliverables}"/>
-                    <h:outputText value="#{ideasController.selected.anticipatedDeliverables}" title="#{bundle.ViewIdeasTitle_anticipatedDeliverables}"/>
-                    
-                    <h:outputText value="#{bundle.ViewIdeasLabel_status}"/>
-                    <h:outputText value="#{ideasController.selected.status}" title="#{bundle.ViewIdeasTitle_status}"/> 
-                    
-                    <h:outputText value="#{bundle.ViewIdeasLabel_dateSubmitted}"/>
-                    <h:outputText value="#{ideasController.selected.dateSubmitted}" title="#{bundle.ViewIdeasTitle_dateSubmitted}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                    
-                    <h:outputText value="#{bundle.ViewIdeasLabel_submitter}"/>
-                    <h:outputText value="#{ideasController.selected.submitter.name} (#{ideasController.selected.submitter.type})" title="#{bundle.ViewIdeasTitle_submitter}"/>
-                    
-                    <h:outputText value="#{bundle.ViewIdeasLabel_organisation}"/>
-                    <c:choose>
-                        <c:when test="#{empty ideasController.selected.organisation.orgName and peopleController.selected.type == 'Organisation'}">
-                            <h:commandLink action="#{bundle.ViewIdeasEditLink}" value="Become Organisation" class="btn" />
-                        </c:when>
-                        <c:otherwise>
-                            <h:outputText value="#{ideasController.selected.organisation.orgName}" title="#{bundle.ViewIdeasTitle_organisation}"/>
-                        </c:otherwise>
-                    </c:choose>
-                    
-                    <h:outputText value="#{bundle.ViewIdeasLabel_moderator}"/>
-                    <c:choose>
-                        <c:when test="#{empty ideasController.selected.moderator.name and peopleController.selected.type == 'Staff'}">
-                            <h:commandLink action="#{bundle.ViewIdeasEditLink}" value="Become Moderator" class="btn " />
-                        </c:when>
-                        <c:otherwise>
-                            <h:outputText value="#{ideasController.selected.moderator.name}" title="#{bundle.ViewIdeasTitle_moderator}"/>
-                        </c:otherwise>
-                    </c:choose>
-                    
-                    <h:outputText value="#{bundle.ViewIdeasLabel_student}"/>
-                    <c:choose>
-                        <c:when test="#{empty ideasController.selected.student.name and peopleController.selected.type == 'Student'}">
-                            <h:commandLink action="#{bundle.ViewIdeasEditLink}" value="Become Student" class="btn" />
-                        </c:when>
-                        <c:otherwise>
-                            <h:outputText value="#{ideasController.selected.student.name}" title="#{bundle.ViewIdeasTitle_student}"/>
-                        </c:otherwise>
-                    </c:choose>
-                </h:panelGrid>
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewIdeasEditLink}" class="btn" />
-                
-                <h:commandLink action="#{ideasController.destroyAndView}" value="#{bundle.ViewIdeasDestroyLink}" class="btn btn-danger" />
-                <br />
-                <br />
+                <c:if test="#{peopleController.selected.id == ideasController.selected.submitter.id 
+                              or peopleController.selected.id == ideasController.selected.moderator.id 
+                              or peopleController.selected.id == ideasController.selected.student.id 
+                              or peopleController.selected.id == ideasController.selected.organisation.id}">
+                    <h:link outcome="Edit" value="#{bundle.ViewIdeasEditLink}" class="btn" />
+                    <h:commandLink action="#{ideasController.destroyAndView}" value="#{bundle.ViewIdeasDestroyLink}" class="btn btn-danger" />
+                </c:if>
             </h:form>
         </ui:define>
     </ui:composition>
