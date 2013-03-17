@@ -12,6 +12,9 @@
         </ui:define>
         <ui:define name="body">
             <h:form>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green"/>
+                </h:panelGroup>
                 <h:panelGrid columns="2" class="table table-striped">
                     <h:outputText value="#{bundle.ViewPeopleLabel_name}"/>
                     <h:outputText value="#{peopleController.selected.name}" title="#{bundle.ViewPeopleTitle_name}"/>
@@ -33,11 +36,10 @@
                 </h:panelGrid>
             </h:form>
             <h2>Your Ideas</h2>
-
-            <h:form id="searchresults" styleClass="jsfcrud_list_form">
-                <h:outputText escape="false" value="#{bundle.ListIdeasEmpty}" rendered="#{ideasController.personItems(peopleController.selected.id).rowCount == 0}"/>
-                <h:panelGroup  rendered="#{ideasController.personItems(peopleController.selected.id).rowCount > 0}">
-                    <h:dataTable value="#{ideasController.personItems(peopleController.selected.id)}" var="item" border="0" cellpadding="2" cellspacing="0" class="table-clear ideaTable" rules="all">
+            <h:form  styleClass="jsfcrud_list_form">
+                <h:outputText escape="false" value="#{bundle.ListIdeasEmpty}" rendered="#{ideasController.items(peopleController.selected.id).rowCount == 0}"/>
+                <h:panelGroup  rendered="#{ideasController.items(peopleController.selected.id).rowCount > 0}">
+                    <h:dataTable value="#{ideasController.items(peopleController.selected.id)}" var="item" border="0" cellpadding="2" cellspacing="0" class="table-clear ideaTable" rules="all">
                         <h:column>
                             <h3><h:outputText value="#{item.title}"/></h3>
                             <p><h:outputText value="#{item.description}"/></p>
