@@ -161,7 +161,11 @@ public class IdeasController implements Serializable {
     }
 
     public void setSearch(String search) {
-        this.search = search;
+        if(!search.equals("")){
+            this.search = search;
+        } else {
+            this.search = null;
+        }
     }
     
     public DataModel personItems(Integer id) {
