@@ -63,6 +63,12 @@ public class IdeasController implements Serializable {
                 public DataModel searchPageDataModel(String search) {
                     return new ListDataModel(getFacade().searchByTitle(search));
                 }
+                
+                @Override
+                public DataModel findPersonPageDataModel(Integer submitter) {
+                    String search = "Ducks";
+                    return new ListDataModel(getFacade().searchByTitle(search));
+                }
             };
         }
         return pagination;

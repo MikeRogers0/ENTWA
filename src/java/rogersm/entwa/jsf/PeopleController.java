@@ -63,6 +63,11 @@ public class PeopleController implements Serializable {
                 public DataModel searchPageDataModel(String search) {
                     throw new UnsupportedOperationException("Not supported yet.");
                 }
+
+                @Override
+                public DataModel findPersonPageDataModel(Integer submitter) {
+                    throw new UnsupportedOperationException("Not supported yet.");
+                }
             };
         }
         return pagination;
