@@ -65,9 +65,8 @@ public class IdeasController implements Serializable {
                 }
                 
                 @Override
-                public DataModel findPersonPageDataModel(Integer submitter) {
-                    String search = "Ducks";
-                    return new ListDataModel(getFacade().searchByTitle(search));
+                public DataModel findPersonPageDataModel(Integer id) {
+                    return new ListDataModel(getFacade().findByPerson(id));
                 }
             };
         }
@@ -165,10 +164,8 @@ public class IdeasController implements Serializable {
         this.search = search;
     }
     
-    public DataModel getPersonItems() {
-        if (search != null) {
-            personItems = getPagination().searchPageDataModel(search);
-        }
+    public DataModel personItems(Integer id) {
+        personItems = getPagination().findPersonPageDataModel(id);
         return personItems;
     }
 

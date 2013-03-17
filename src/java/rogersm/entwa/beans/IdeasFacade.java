@@ -35,6 +35,12 @@ public class IdeasFacade extends AbstractFacade<Ideas> {
         return  results;
     }
     
+    public List findByPerson(Integer id) {
+        TypedQuery <Ideas> query = em.createNamedQuery("Ideas.findByPerson", Ideas.class).setParameter("submitter", id); 
+        List<Ideas> results = query.getResultList(); 
+        return  results;
+    }
+    
     public List searchByTitle(String search){
         TypedQuery <Ideas> query = em.createNamedQuery("Ideas.searchByTitle", Ideas.class).setParameter("title", search); 
         List<Ideas> results = query.getResultList(); 

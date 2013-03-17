@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Ideas.findAll", query = "SELECT i FROM Ideas i"),
     @NamedQuery(name = "Ideas.findById", query = "SELECT i FROM Ideas i WHERE i.id = :id"),
+    @NamedQuery(name = "Ideas.findByPerson", query = "SELECT i FROM Ideas i WHERE i.submitter.id = :submitter"),
     @NamedQuery(name = "Ideas.findByTitle", query = "SELECT i FROM Ideas i WHERE i.title = :title"),
     @NamedQuery(name = "Ideas.searchByTitle", query = "SELECT i FROM Ideas i WHERE i.title = :title"),
     @NamedQuery(name = "Ideas.findByStatus", query = "SELECT i FROM Ideas i WHERE i.status = :status"),

@@ -15,7 +15,7 @@ public abstract class PaginationHelper {
 
     public abstract DataModel createPageDataModel();
     public abstract DataModel searchPageDataModel(String search);
-    public abstract DataModel findPersonPageDataModel(Integer submitter);
+    public abstract DataModel findPersonPageDataModel(Integer id);
 
     public int getPageFirstItem() {
         return page * pageSize;
