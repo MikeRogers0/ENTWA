@@ -11,9 +11,6 @@
         </ui:define>
         <ui:define name="body">
             <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green"/>
-                </h:panelGroup>
                 <h:outputText escape="false" value="#{bundle.ListIdeasEmpty}" rendered="#{ideasController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{ideasController.items.rowCount > 0}">
                     <h:outputText value="#{ideasController.pagination.pageFirstItem + 1}..#{ideasController.pagination.pageLastItem + 1}/#{ideasController.pagination.itemsCount}"/>&nbsp;

@@ -50,3 +50,7 @@ body{
 .ideameta{
     color: #666;
 }
+
+.infoPanel ul{
+    list-style:none;
+}

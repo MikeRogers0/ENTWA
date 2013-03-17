@@ -12,9 +12,6 @@
         </ui:define>
         <ui:define name="body">
             <h:form>
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green"/>
-                </h:panelGroup>
                 <h:panelGrid columns="2" class="table table-striped">
                     <h:outputText value="#{bundle.ViewPeopleLabel_name}"/>
                     <h:outputText value="#{peopleController.selected.name}" title="#{bundle.ViewPeopleTitle_name}"/>
