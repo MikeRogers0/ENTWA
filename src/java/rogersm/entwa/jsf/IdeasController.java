@@ -25,7 +25,7 @@ public class IdeasController implements Serializable {
 
     private Ideas current;
     private DataModel items = null;
-    private DataModel searchItems = null;
+    private DataModel personItems = null;
     @EJB
     private rogersm.entwa.beans.IdeasFacade ejbFacade;
     private PaginationHelper pagination;
@@ -159,11 +159,11 @@ public class IdeasController implements Serializable {
         this.search = search;
     }
     
-    public DataModel getSearchItems() {
+    public DataModel getPersonItems() {
         if (search != null) {
-            searchItems = getPagination().searchPageDataModel(search);
+            personItems = getPagination().searchPageDataModel(search);
         }
-        return searchItems;
+        return personItems;
     }
 
     private void performDestroy() {
@@ -193,6 +193,9 @@ public class IdeasController implements Serializable {
     public DataModel getItems() {
         if (items == null) {
             items = getPagination().createPageDataModel();
+        }
+        if (search != null) {
+            items = getPagination().searchPageDataModel(search);
         }
         return items;
     }

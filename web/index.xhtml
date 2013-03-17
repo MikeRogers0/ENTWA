@@ -19,38 +19,19 @@
                 </fieldset>
             </h:form>
             <h:form id="searchresults" styleClass="jsfcrud_list_form">
-                <c:choose>
-                    <c:when test="#{!empty ideasController.search}">
-                            <h:outputText escape="false" value="#{bundle.ListIdeasEmpty}" rendered="#{ideasController.searchItems.rowCount == 0}"/>
-                            <h:panelGroup  rendered="#{ideasController.searchItems.rowCount > 0}">
-                                <h:dataTable value="#{ideasController.searchItems}" var="item" border="0" cellpadding="2" cellspacing="0" class="table-clear" rules="all">
-                                    <h:column>
-                                        <h2><h:outputText value="#{item.title}"/></h2>
-                                        <p><h:outputText value="#{item.description}"/></p>
-                                        <p><small>Added: <h:outputText value="#{item.dateSubmitted}">
-                                                    <f:convertDateTime pattern="MM/dd/yyyy" />
-                                                </h:outputText></small></p>
-                                        <h:commandLink action="#{ideasController.prepareView}" value="#{bundle.ListIdeasViewLink}" immediate="true" class="btn"/>
-                                    </h:column>
-                                </h:dataTable>
-                            </h:panelGroup>
-                    </c:when>
-                    <c:otherwise>
-                            <h:outputText escape="false" value="#{bundle.ListIdeasEmpty}" rendered="#{ideasController.items.rowCount == 0}"/>
-                            <h:panelGroup  rendered="#{ideasController.items.rowCount > 0}">
-                                <h:dataTable value="#{ideasController.items}" var="item" border="0" cellpadding="2" cellspacing="0" class="table-clear" rules="all">
-                                    <h:column>
-                                        <h2><h:outputText value="#{item.title}"/></h2>
-                                        <p><h:outputText value="#{item.description}"/></p>
-                                        <p><small>Added: <h:outputText value="#{item.dateSubmitted}">
-                                                    <f:convertDateTime pattern="MM/dd/yyyy" />
-                                                </h:outputText></small></p>
-                                        <h:commandLink action="#{ideasController.prepareView}" value="#{bundle.ListIdeasViewLink}" immediate="true" class="btn"/>
-                                    </h:column>
-                                </h:dataTable>
-                            </h:panelGroup>
-                    </c:otherwise>
-                </c:choose>
+                <h:outputText escape="false" value="#{bundle.ListIdeasEmpty}" rendered="#{ideasController.items.rowCount == 0}"/>
+                <h:panelGroup  rendered="#{ideasController.items.rowCount > 0}">
+                    <h:dataTable value="#{ideasController.items}" var="item" border="0" cellpadding="2" cellspacing="0" class="table-clear" rules="all">
+                        <h:column>
+                            <h2><h:outputText value="#{item.title}"/></h2>
+                            <p><h:outputText value="#{item.description}"/></p>
+                            <p><small>Added: <h:outputText value="#{item.dateSubmitted}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                    </h:outputText></small></p>
+                            <h:commandLink action="#{ideasController.prepareView}" value="#{bundle.ListIdeasViewLink}" immediate="true" class="btn"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>    
             </h:form>
         </ui:define>
     </ui:composition>
