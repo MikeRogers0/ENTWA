@@ -3,16 +3,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
             <h:outputText value="Your Account"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <p>Below are some bits related to your account</p>
+            <h:form>
+                <h:panelGrid columns="2" class="table table-striped">
+                    <h:outputText value="#{bundle.ViewPeopleLabel_name}"/>
+                    <h:outputText value="#{peopleController.selected.name}" title="#{bundle.ViewPeopleTitle_name}"/>
+                    <h:outputText value="#{bundle.ViewPeopleLabel_email}"/>
+                    <h:outputText value="#{peopleController.selected.email}" title="#{bundle.ViewPeopleTitle_email}"/>
+                    <h:outputText value="#{bundle.ViewPeopleLabel_type}"/>
+                    <h:outputText value="#{peopleController.selected.type}" title="#{bundle.ViewPeopleTitle_type}"/>
+                    
+                    <c:if test="#{peopleController.selected.type == 'Organisation'}">
+                        <h:outputText value="#{bundle.ViewPeopleLabel_orgName}"/>
+                        <h:outputText value="#{peopleController.selected.orgName}" title="#{bundle.ViewPeopleTitle_orgName}"/>
+                        <h:outputText value="#{bundle.ViewPeopleLabel_orgDescription}"/>
+                        <h:outputText value="#{peopleController.selected.orgDescription}" title="#{bundle.ViewPeopleTitle_orgDescription}"/>
+                        <h:outputText value="#{bundle.ViewPeopleLabel_orgPhoneNumber}"/>
+                        <h:outputText value="#{peopleController.selected.orgPhoneNumber}" title="#{bundle.ViewPeopleTitle_orgPhoneNumber}"/>
+                    </c:if>
+                    
+                    <h:commandLink action="#{peopleController.prepareEdit}" value="#{bundle.ViewPeopleEditLink}" class="btn" />
+                </h:panelGrid>
+            </h:form>
             <h2>Your Ideas</h2>
-            
+
             <h:form id="searchresults" styleClass="jsfcrud_list_form">
                 <h:outputText escape="false" value="#{bundle.ListIdeasEmpty}" rendered="#{ideasController.personItems(peopleController.selected.id).rowCount == 0}"/>
                 <h:panelGroup  rendered="#{ideasController.personItems(peopleController.selected.id).rowCount > 0}">
@@ -20,7 +41,7 @@
                         <h:column>
                             <h3><h:outputText value="#{item.title}"/></h3>
                             <p><h:outputText value="#{item.description}"/></p>
-                            <p><small>Added: <h:outputText value="#{item.dateSubmitted}">
+                            <p><small class="ideameta">Added: <h:outputText value="#{item.dateSubmitted}">
                                         <f:convertDateTime pattern="MM/dd/yyyy" />
                                     </h:outputText></small></p>
                             <h:commandLink action="#{ideasController.prepareView}" value="#{bundle.ListIdeasViewLink}" immediate="true" class="btn"/>

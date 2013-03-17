@@ -25,7 +25,7 @@
                         <h:column>
                             <h3><h:outputText value="#{item.title}"/></h3>
                             <p><h:outputText value="#{item.description}"/></p>
-                            <p><small>Added: <h:outputText value="#{item.dateSubmitted}">
+                            <p><small class="ideameta">Added: <h:outputText value="#{item.dateSubmitted}">
                                         <f:convertDateTime pattern="MM/dd/yyyy" />
                                     </h:outputText></small></p>
                             <h:commandLink action="#{ideasController.prepareView}" value="#{bundle.ListIdeasViewLink}" immediate="true" class="btn"/>

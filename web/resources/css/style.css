@@ -46,3 +46,7 @@ body{
 .ideaTable tbody tr:last-child{
     border-bottom: transparent;
 }
+
+.ideameta{
+    color: #666;
+}

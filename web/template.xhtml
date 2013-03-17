@@ -56,7 +56,7 @@
                         <c:choose>
                             <c:when test="#{!empty peopleController.selected.name}">
                                 <p>Howdy <strong>#{peopleController.selected.name}</strong> (#{peopleController.selected.type})!</p>
-                                <h:link outcome="Edit" value="#{bundle.ViewPeopleEditLink}" class="btn" /> 
+                                <h:commandLink action="#{peopleController.prepareEdit}" value="#{bundle.ViewPeopleEditLink}" class="btn" /> 
                             </c:when>   
                             <c:otherwise>
 
