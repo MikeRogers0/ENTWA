@@ -54,3 +54,7 @@ body{
 .infoPanel ul{
     list-style:none;
 }
+
+.table-striped td{
+    min-width: 200px;
+}
