@@ -31,3 +31,18 @@ body{
 .hidden{
     display: none;
 }
+
+.table-clear{
+    width: 100%;
+}
+
+.ideaTable tbody td{
+    padding-bottom: 15px;
+}
+
+.ideaTable tbody tr{
+    border-bottom: 1px solid #ddd;
+}
+.ideaTable tbody tr:last-child{
+    border-bottom: transparent;
+}

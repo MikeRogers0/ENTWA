@@ -36,7 +36,11 @@ public class IdeasFacade extends AbstractFacade<Ideas> {
     }
     
     public List findByPerson(Integer id) {
-        TypedQuery <Ideas> query = em.createNamedQuery("Ideas.findByPerson", Ideas.class).setParameter("submitter", id); 
+        TypedQuery <Ideas> query = em.createNamedQuery("Ideas.findByPerson", Ideas.class).
+                setParameter("submitter", id).
+                setParameter("student", id).
+                setParameter("moderator", id).
+                setParameter("organisation", id); 
         List<Ideas> results = query.getResultList(); 
         return  results;
     }

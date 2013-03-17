@@ -21,7 +21,7 @@
             <h:form id="searchresults" styleClass="jsfcrud_list_form">
                 <h:outputText escape="false" value="#{bundle.ListIdeasEmpty}" rendered="#{ideasController.items.rowCount == 0}"/>
                 <h:panelGroup  rendered="#{ideasController.items.rowCount > 0}">
-                    <h:dataTable value="#{ideasController.items}" var="item" border="0" cellpadding="2" cellspacing="0" class="table-clear" rules="all">
+                    <h:dataTable value="#{ideasController.items}" var="item" border="0" cellpadding="2" cellspacing="0" class="table-clear ideaTable" rules="all">
                         <h:column>
                             <h3><h:outputText value="#{item.title}"/></h3>
                             <p><h:outputText value="#{item.description}"/></p>
