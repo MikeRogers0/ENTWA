@@ -234,6 +234,7 @@ public class PeopleController implements Serializable {
             externalContext.getSessionMap().put("name", current.getName());
             return "/people/account?faces-redirect=true";
         }
+        JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("NoUserFound"));
         return "";
     }
     

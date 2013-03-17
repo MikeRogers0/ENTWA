@@ -46,7 +46,8 @@ public class IdeasFacade extends AbstractFacade<Ideas> {
     }
     
     public List searchByTitle(String search){
-        TypedQuery <Ideas> query = em.createNamedQuery("Ideas.searchByTitle", Ideas.class).setParameter("title", search); 
+        TypedQuery <Ideas> query = em.createNamedQuery("Ideas.searchByTitle", Ideas.class)
+                .setParameter("title", search); 
         List<Ideas> results = query.getResultList(); 
         return  results;
     }

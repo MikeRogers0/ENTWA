@@ -59,7 +59,9 @@
                                 <h:commandLink action="#{peopleController.prepareEdit}" value="#{bundle.ViewPeopleEditLink}" class="btn" /> 
                             </c:when>   
                             <c:otherwise>
-
+                                <h:panelGroup id="messagePanel" layout="block">
+                                    <h:messages errorStyle="color: red" infoStyle="color: green"/>
+                                </h:panelGroup>
                                 <h:outputLabel for="email" value="Email" />
                                 <h:inputText id="email" value="#{peopleController.selected.email}" required="true" />
                                 <h:message for="email" />
@@ -69,10 +71,9 @@
                                 <h:message for="password" />
                                 <br />
                                 <h:commandButton value="Login" action="#{peopleController.login}" class="btn"  />
-                                <h:messages globalOnly="true" />
-                                
+
                                 <hr />
-                                
+
                                 <p>Note: To add idea to the database, you must be a signed in user.</p>
                             </c:otherwise>
                         </c:choose>
