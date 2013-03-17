@@ -70,31 +70,31 @@ public class IdeasController implements Serializable {
 
     public String prepareList() {
         recreateModel();
-        return "/ideas/List";
+        return "/ideas/List?faces-redirect=true";
     }
     
     public String prepareHome() {
         recreateModel();
-        return "/index";
+        return "/index?faces-redirect=true";
     }
 
     public String prepareView() {
         current = (Ideas) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "/ideas/View";
+        return "/ideas/View?faces-redirect=true";
     }
 
     public String prepareCreate() {
         current = new Ideas();
         selectedItemIndex = -1;
-        return "/ideas/Create";
+        return "/ideas/Create?faces-redirect=true";
     }
 
     public String create() {
         try {
             getFacade().create(current);
             //JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("IdeasCreated"));
-            return "/ideas/View";
+            return "/ideas/View?faces-redirect=true";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -104,14 +104,14 @@ public class IdeasController implements Serializable {
     public String prepareEdit() {
         current = (Ideas) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "/ideas/Edit";
+        return "/ideas/Edit?faces-redirect=true";
     }
 
     public String update() {
         try {
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("IdeasUpdated"));
-            return "/ideas/View";
+            return "/ideas/View?faces-redirect=true";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -124,7 +124,7 @@ public class IdeasController implements Serializable {
         performDestroy();
         recreatePagination();
         recreateModel();
-        return "/ideas/List";
+        return "/ideas/List?faces-redirect=true";
     }
 
     public String destroyAndView() {
@@ -132,11 +132,11 @@ public class IdeasController implements Serializable {
         recreateModel();
         updateCurrentItem();
         if (selectedItemIndex >= 0) {
-            return "/ideas/View";
+            return "/ideas/View?faces-redirect=true";
         } else {
             // all items were removed - go back to list
             recreateModel();
-            return "/ideas/List";
+            return "/ideas/List?faces-redirect=true";
         }
     }
     
@@ -146,7 +146,7 @@ public class IdeasController implements Serializable {
      */
     public String search(){
         this.items = null;
-        return "/index";
+        return "/index?faces-redirect=true";
     }
     
     private String search = null;

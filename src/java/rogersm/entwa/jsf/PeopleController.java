@@ -70,23 +70,23 @@ public class PeopleController implements Serializable {
 
     public String prepareList() {
         recreateModel();
-        return "/people/List";
+        return "/people/List?faces-redirect=true";
     }
 
     public String prepareView() {
         current = (People) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "/people/View";
+        return "/people/View?faces-redirect=true";
     }
 
     public String prepareCreate() {
         current = new People();
         selectedItemIndex = -1;
-        return "/people/Create";
+        return "/people/Create?faces-redirect=true";
     }
     
     public String prepareAccount() {
-        return "/people/account";
+        return "/people/account?faces-redirect=true";
     }
 
     public String create() {
@@ -103,14 +103,14 @@ public class PeopleController implements Serializable {
     public String prepareEdit() {
         current = (People) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "/people/Edit";
+        return "/people/Edit?faces-redirect=true";
     }
 
     public String update() {
         try {
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PeopleUpdated"));
-            return "/people/View";
+            return "/people/View?faces-redirect=true";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -123,7 +123,7 @@ public class PeopleController implements Serializable {
         performDestroy();
         recreatePagination();
         recreateModel();
-        return "/people/List";
+        return "/people/List?faces-redirect=true";
     }
 
     public String destroyAndView() {
@@ -131,11 +131,11 @@ public class PeopleController implements Serializable {
         recreateModel();
         updateCurrentItem();
         if (selectedItemIndex >= 0) {
-            return "/people/View";
+            return "/people/View?faces-redirect=true";
         } else {
             // all items were removed - go back to list
             recreateModel();
-            return "List";
+            return "/people/List?faces-redirect=true";
         }
     }
 
@@ -181,13 +181,13 @@ public class PeopleController implements Serializable {
     public String next() {
         getPagination().nextPage();
         recreateModel();
-        return "/people/List";
+        return "/people/List?faces-redirect=true";
     }
 
     public String previous() {
         getPagination().previousPage();
         recreateModel();
-        return "/people/List";
+        return "/people/List?faces-redirect=true";
     }
 
     public SelectItem[] getItemsAvailableSelectMany() {
@@ -227,7 +227,7 @@ public class PeopleController implements Serializable {
             externalContext.getSessionMap().put("id", current.getId());
             externalContext.getSessionMap().put("email", current.getEmail());
             externalContext.getSessionMap().put("name", current.getName());
-            return "/people/account";
+            return "/people/account?faces-redirect=true";
         }
         return "";
     }
@@ -236,7 +236,7 @@ public class PeopleController implements Serializable {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         externalContext.invalidateSession();
         current = null;
-        return "/people/logout";
+        return "/people/logout?faces-redirect=true";
     }
      
     @FacesConverter(forClass = People.class)
