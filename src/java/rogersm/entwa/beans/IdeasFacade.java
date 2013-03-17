@@ -20,21 +20,38 @@ public class IdeasFacade extends AbstractFacade<Ideas> {
     @PersistenceContext(unitName = "ENTWAPU")
     private EntityManager em;
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
+    /**
+     *
+     */
     public IdeasFacade() {
         super(Ideas.class);
     }
     
+    /**
+     *
+     * @param status
+     * @return
+     */
     public List findByStatus(String status) {
         TypedQuery <Ideas> query = em.createNamedQuery("Ideas.findByStatus", Ideas.class).setParameter("status", status); 
         List<Ideas> results = query.getResultList(); 
         return  results;
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     public List findByPerson(Integer id) {
         TypedQuery <Ideas> query = em.createNamedQuery("Ideas.findByPerson", Ideas.class).
                 setParameter("submitter", id).
@@ -45,6 +62,11 @@ public class IdeasFacade extends AbstractFacade<Ideas> {
         return  results;
     }
     
+    /**
+     *
+     * @param search
+     * @return
+     */
     public List searchByTitle(String search){
         TypedQuery <Ideas> query = em.createNamedQuery("Ideas.searchByTitle", Ideas.class)
                 .setParameter("title", search); 

@@ -82,13 +82,28 @@ public class People implements Serializable {
     @OneToMany(mappedBy = "student")
     private Collection<Ideas> ideasCollection2;
 
+    /**
+     *
+     */
     public People() {
     }
 
+    /**
+     *
+     * @param id
+     */
     public People(Integer id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @param id
+     * @param name
+     * @param email
+     * @param type
+     * @param password
+     */
     public People(Integer id, String name, String email, String type, String password) {
         this.id = id;
         this.name = name;
@@ -97,97 +112,189 @@ public class People implements Serializable {
         this.password = password;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     *
+     * @param type
+     */
     public void setType(String type) {
         this.type = type;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getOrgName() {
         return orgName;
     }
 
+    /**
+     *
+     * @param orgName
+     */
     public void setOrgName(String orgName) {
         this.orgName = orgName;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getOrgDescription() {
         return orgDescription;
     }
 
+    /**
+     *
+     * @param orgDescription
+     */
     public void setOrgDescription(String orgDescription) {
         this.orgDescription = orgDescription;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getOrgPhoneNumber() {
         return orgPhoneNumber;
     }
 
+    /**
+     *
+     * @param orgPhoneNumber
+     */
     public void setOrgPhoneNumber(String orgPhoneNumber) {
         this.orgPhoneNumber = orgPhoneNumber;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     *
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     *
+     * @return
+     */
     @XmlTransient
     public Collection<Ideas> getIdeasCollection() {
         return ideasCollection;
     }
 
+    /**
+     *
+     * @param ideasCollection
+     */
     public void setIdeasCollection(Collection<Ideas> ideasCollection) {
         this.ideasCollection = ideasCollection;
     }
 
+    /**
+     *
+     * @return
+     */
     @XmlTransient
     public Collection<Ideas> getIdeasCollection1() {
         return ideasCollection1;
     }
 
+    /**
+     *
+     * @param ideasCollection1
+     */
     public void setIdeasCollection1(Collection<Ideas> ideasCollection1) {
         this.ideasCollection1 = ideasCollection1;
     }
 
+    /**
+     *
+     * @return
+     */
     @XmlTransient
     public Collection<Ideas> getIdeasCollection2() {
         return ideasCollection2;
     }
 
+    /**
+     *
+     * @param ideasCollection2
+     */
     public void setIdeasCollection2(Collection<Ideas> ideasCollection2) {
         this.ideasCollection2 = ideasCollection2;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -195,6 +302,11 @@ public class People implements Serializable {
         return hash;
     }
 
+    /**
+     *
+     * @param object
+     * @return
+     */
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -208,6 +320,10 @@ public class People implements Serializable {
         return true;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return this.name +" ("+this.type+")";

@@ -20,6 +20,10 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
+/**
+ *
+ * @author MikeRogers
+ */
 @ManagedBean(name = "peopleController")
 @SessionScoped
 public class PeopleController implements Serializable {
@@ -31,9 +35,16 @@ public class PeopleController implements Serializable {
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
+    /**
+     *
+     */
     public PeopleController() {
     }
 
+    /**
+     *
+     * @return
+     */
     public People getSelected() {
         if (current == null) {
             current = new People();
@@ -46,6 +57,10 @@ public class PeopleController implements Serializable {
         return ejbFacade;
     }
 
+    /**
+     *
+     * @return
+     */
     public PaginationHelper getPagination() {
         if (pagination == null) {
             pagination = new PaginationHelper(10) {
@@ -73,27 +88,38 @@ public class PeopleController implements Serializable {
         return pagination;
     }
 
-    public String prepareList() {
-        recreateModel();
-        return "/people/List?faces-redirect=true";
-    }
-
+    /**
+     *
+     * @return
+     */
     public String prepareView() {
         current = (People) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "/people/View?faces-redirect=true";
     }
 
+    /**
+     *
+     * @return
+     */
     public String prepareCreate() {
         current = new People();
         selectedItemIndex = -1;
         return "/people/Create?faces-redirect=true";
     }
     
+    /**
+     *
+     * @return
+     */
     public String prepareAccount() {
         return "/people/account?faces-redirect=true";
     }
 
+    /**
+     *
+     * @return
+     */
     public String create() {
         try {
             getFacade().create(current);
@@ -105,12 +131,20 @@ public class PeopleController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String prepareEdit() {
         current = (People) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "/people/Edit?faces-redirect=true";
     }
 
+    /**
+     *
+     * @return
+     */
     public String update() {
         try {
             getFacade().edit(current);
@@ -122,25 +156,33 @@ public class PeopleController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String destroy() {
         current = (People) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
         recreateModel();
-        return "/people/List?faces-redirect=true";
+        return "/index?faces-redirect=true";
     }
 
+    /**
+     *
+     * @return
+     */
     public String destroyAndView() {
         performDestroy();
         recreateModel();
         updateCurrentItem();
         if (selectedItemIndex >= 0) {
-            return "/people/View?faces-redirect=true";
+            return "/index?faces-redirect=true";
         } else {
             // all items were removed - go back to list
             recreateModel();
-            return "/people/List?faces-redirect=true";
+            return "/index?faces-redirect=true";
         }
     }
 
@@ -168,6 +210,10 @@ public class PeopleController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public DataModel getItems() {
         if (items == null) {
             items = getPagination().createPageDataModel();
@@ -181,37 +227,43 @@ public class PeopleController implements Serializable {
 
     private void recreatePagination() {
         pagination = null;
-    }
+    }  
 
-    public String next() {
-        getPagination().nextPage();
-        recreateModel();
-        return "/people/List?faces-redirect=true";
-    }
-
-    public String previous() {
-        getPagination().previousPage();
-        recreateModel();
-        return "/people/List?faces-redirect=true";
-    }
-
+    /**
+     *
+     * @return
+     */
     public SelectItem[] getItemsAvailableSelectMany() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), false);
     }
 
+    /**
+     *
+     * @return
+     */
     public SelectItem[] getItemsAvailableSelectOne() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
     
+    /**
+     *
+     * @param type
+     * @return
+     */
     public SelectItem[] getByTypeAvailableSelectOne(String type) {
         return JsfUtil.getSelectItems(ejbFacade.findByType(type), true);
     }
     
+    /**
+     *
+     * @return
+     */
     public SelectItem[] getByTypeAvailableWithUserSelected() {
         return JsfUtil.getSelectItems(ejbFacade.findById(current.getId()), false);
     }
     
     /*
+     * Based on:
      * http://stackoverflow.com/questions/2206911/best-way-for-user-authentication-on-javaee-6-using-jsf-2-0/2207147#2207147
      * https://docs.jboss.org/webbeans/reference/current/en-US/html/example.html
      */
@@ -219,6 +271,11 @@ public class PeopleController implements Serializable {
     private String password;
     private List <People> results;
     
+    
+    /**
+     *
+     * @return
+     */
     public String login(){ 
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         try{
@@ -238,6 +295,10 @@ public class PeopleController implements Serializable {
         return "";
     }
     
+    /**
+     *
+     * @return
+     */
     public String logout(){
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         externalContext.invalidateSession();
@@ -245,9 +306,19 @@ public class PeopleController implements Serializable {
         return "/people/logout?faces-redirect=true";
     }
      
+    /**
+     *
+     */
     @FacesConverter(forClass = People.class)
     public static class PeopleControllerConverter implements Converter {
 
+        /**
+         *
+         * @param facesContext
+         * @param component
+         * @param value
+         * @return
+         */
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
@@ -269,6 +340,13 @@ public class PeopleController implements Serializable {
             return sb.toString();
         }
 
+        /**
+         *
+         * @param facesContext
+         * @param component
+         * @param object
+         * @return
+         */
         public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
             if (object == null) {
                 return null;

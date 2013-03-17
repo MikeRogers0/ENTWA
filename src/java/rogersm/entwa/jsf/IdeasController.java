@@ -19,6 +19,10 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
+/**
+ *
+ * @author MikeRogers
+ */
 @ManagedBean(name = "ideasController")
 @SessionScoped
 public class IdeasController implements Serializable {
@@ -30,9 +34,16 @@ public class IdeasController implements Serializable {
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
+    /**
+     *
+     */
     public IdeasController() {
     }
 
+    /**
+     *
+     * @return
+     */
     public Ideas getSelected() {
         if (current == null) {
             current = new Ideas();
@@ -45,6 +56,10 @@ public class IdeasController implements Serializable {
         return ejbFacade;
     }
 
+    /**
+     *
+     * @return
+     */
     public PaginationHelper getPagination() {
         if (pagination == null) {
             pagination = new PaginationHelper(10) {
@@ -72,28 +87,30 @@ public class IdeasController implements Serializable {
         return pagination;
     }
 
-    public String prepareList() {
-        recreateModel();
-        return "/ideas/List?faces-redirect=true";
-    }
-    
-    public String prepareHome() {
-        recreateModel();
-        return "/index?faces-redirect=true";
-    }
-
+    /**
+     *
+     * @return
+     */
     public String prepareView() {
         current = (Ideas) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "/ideas/View?faces-redirect=true";
     }
 
+    /**
+     *
+     * @return
+     */
     public String prepareCreate() {
         current = new Ideas();
         selectedItemIndex = -1;
         return "/ideas/Create?faces-redirect=true";
     }
 
+    /**
+     *
+     * @return
+     */
     public String create() {
         try {
             getFacade().create(current);
@@ -105,12 +122,20 @@ public class IdeasController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String prepareEdit() {
         current = (Ideas) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "/ideas/Edit?faces-redirect=true";
     }
 
+    /**
+     *
+     * @return
+     */
     public String update() {
         try {
             getFacade().edit(current);
@@ -122,31 +147,43 @@ public class IdeasController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String destroy() {
         current = (Ideas) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
         recreateModel();
-        return "/ideas/List?faces-redirect=true";
+        return "/people/account?faces-redirect=true";
     }
 
+    /**
+     *
+     * @return
+     */
     public String destroyAndView() {
         performDestroy();
         recreateModel();
         updateCurrentItem();
         if (selectedItemIndex >= 0) {
-            return "/ideas/View?faces-redirect=true";
+            return "/people/account?faces-redirect=true";
         } else {
             // all items were removed - go back to list
             recreateModel();
-            return "/ideas/List?faces-redirect=true";
+            return "/people/account?faces-redirect=true";
         }
     }
     
     /*
      * The search stuff
      * 
+     */
+    /**
+     *
+     * @return
      */
     public String search(){
         this.items = null;
@@ -155,10 +192,18 @@ public class IdeasController implements Serializable {
     
     private String search = null;
     
+    /**
+     *
+     * @return
+     */
     public String getSearch() {
         return search;
     }
 
+    /**
+     *
+     * @param search
+     */
     public void setSearch(String search) {
         if(!search.equals("")){
             this.search = search;
@@ -191,6 +236,10 @@ public class IdeasController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public DataModel getItems() {
         if (items == null) {
             items = getPagination().createPageDataModel();
@@ -201,6 +250,11 @@ public class IdeasController implements Serializable {
         return items;
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     public DataModel items(Integer id) {
         search = null;
         items = getPagination().findPersonPageDataModel(id);
@@ -216,30 +270,56 @@ public class IdeasController implements Serializable {
         pagination = null;
     }
 
+    /**
+     *
+     * @return
+     */
     public String next() {
         getPagination().nextPage();
         recreateModel();
-        return "/ideas/List";
+        return "/people/account";
     }
 
+    /**
+     *
+     * @return
+     */
     public String previous() {
         getPagination().previousPage();
         recreateModel();
-        return "/ideas/List";
+        return "/people/account";
     }
 
+    /**
+     *
+     * @return
+     */
     public SelectItem[] getItemsAvailableSelectMany() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), false);
     }
 
+    /**
+     *
+     * @return
+     */
     public SelectItem[] getItemsAvailableSelectOne() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
     
 
+    /**
+     *
+     */
     @FacesConverter(forClass = Ideas.class)
     public static class IdeasControllerConverter implements Converter {
 
+        /**
+         *
+         * @param facesContext
+         * @param component
+         * @param value
+         * @return
+         */
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
@@ -261,6 +341,13 @@ public class IdeasController implements Serializable {
             return sb.toString();
         }
 
+        /**
+         *
+         * @param facesContext
+         * @param component
+         * @param object
+         * @return
+         */
         public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
             if (object == null) {
                 return null;

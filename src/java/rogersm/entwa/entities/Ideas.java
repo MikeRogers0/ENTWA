@@ -87,13 +87,27 @@ public class Ideas implements Serializable {
     @ManyToOne
     private People organisation;
 
+    /**
+     *
+     */
     public Ideas() {
     }
 
+    /**
+     *
+     * @param id
+     */
     public Ideas(Integer id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @param id
+     * @param title
+     * @param description
+     * @param status
+     */
     public Ideas(Integer id, String title, String description, String status) {
         this.id = id;
         this.title = title;
@@ -101,62 +115,122 @@ public class Ideas implements Serializable {
         this.status = status;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     *
+     * @param title
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     *
+     * @param description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAimsAndObjectives() {
         return aimsAndObjectives;
     }
 
+    /**
+     *
+     * @param aimsAndObjectives
+     */
     public void setAimsAndObjectives(String aimsAndObjectives) {
         this.aimsAndObjectives = aimsAndObjectives;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAcademicQuestion() {
         return academicQuestion;
     }
 
+    /**
+     *
+     * @param academicQuestion
+     */
     public void setAcademicQuestion(String academicQuestion) {
         this.academicQuestion = academicQuestion;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAnticipatedDeliverables() {
         return anticipatedDeliverables;
     }
 
+    /**
+     *
+     * @param anticipatedDeliverables
+     */
     public void setAnticipatedDeliverables(String anticipatedDeliverables) {
         this.anticipatedDeliverables = anticipatedDeliverables;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getStatus() {
         return status;
     }
 
+    /**
+     *
+     * @param status
+     */
     public void setStatus(String status) {
         this.status = status;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getDateSubmitted() {
         if(dateSubmitted == null){
             dateSubmitted = new Date();
@@ -164,42 +238,82 @@ public class Ideas implements Serializable {
         return dateSubmitted;
     }
 
+    /**
+     *
+     * @param dateSubmitted
+     */
     public void setDateSubmitted(Date dateSubmitted) {
         this.dateSubmitted = dateSubmitted;
     }
 
+    /**
+     *
+     * @return
+     */
     public People getModerator() {
         return moderator;
     }
 
+    /**
+     *
+     * @param moderator
+     */
     public void setModerator(People moderator) {
         this.moderator = moderator;
     }
 
+    /**
+     *
+     * @return
+     */
     public People getSubmitter() {
         return submitter;
     }
 
+    /**
+     *
+     * @param submitter
+     */
     public void setSubmitter(People submitter) {
         this.submitter = submitter;
     }
     
+    /**
+     *
+     * @return
+     */
     public People getOrganisation() {
         return organisation;
     }
 
+    /**
+     *
+     * @param organisation
+     */
     public void setOrganisation(People organisation) {
         this.organisation = organisation;
     }
 
+    /**
+     *
+     * @return
+     */
     public People getStudent() {
         return student;
     }
 
+    /**
+     *
+     * @param student
+     */
     public void setStudent(People student) {
         this.student = student;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -207,6 +321,11 @@ public class Ideas implements Serializable {
         return hash;
     }
 
+    /**
+     *
+     * @param object
+     * @return
+     */
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -220,6 +339,10 @@ public class Ideas implements Serializable {
         return true;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return this.title;
