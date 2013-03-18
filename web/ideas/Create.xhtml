@@ -14,48 +14,48 @@
             <h:form>
                 <h:panelGrid columns="2" class="table table-striped">
                     
-                    <h:outputLabel value="#{bundle.CreateIdeasLabel_title}" for="title" />
-                    <h:inputText id="title" value="#{ideasController.selected.title}" title="#{bundle.CreateIdeasTitle_title}" required="true" requiredMessage="#{bundle.CreateIdeasRequiredMessage_title}"/>
-                    <h:outputLabel value="#{bundle.CreateIdeasLabel_description}" for="description" />
-                    <h:inputTextarea rows="4" cols="30" id="description" value="#{ideasController.selected.description}" title="#{bundle.CreateIdeasTitle_description}" required="true" requiredMessage="#{bundle.CreateIdeasRequiredMessage_description}"/>
-                    <h:outputLabel value="#{bundle.CreateIdeasLabel_aimsAndObjectives}" for="aimsAndObjectives" />
-                    <h:inputTextarea rows="4" cols="30" id="aimsAndObjectives" value="#{ideasController.selected.aimsAndObjectives}" title="#{bundle.CreateIdeasTitle_aimsAndObjectives}" />
-                    <h:outputLabel value="#{bundle.CreateIdeasLabel_academicQuestion}" for="academicQuestion" />
-                    <h:inputTextarea rows="4" cols="30" id="academicQuestion" value="#{ideasController.selected.academicQuestion}" title="#{bundle.CreateIdeasTitle_academicQuestion}" />
-                    <h:outputLabel value="#{bundle.CreateIdeasLabel_anticipatedDeliverables}" for="anticipatedDeliverables" />
-                    <h:inputTextarea rows="4" cols="30" id="anticipatedDeliverables" value="#{ideasController.selected.anticipatedDeliverables}" title="#{bundle.CreateIdeasTitle_anticipatedDeliverables}" />
+                    <h:outputLabel value="#{bundle.IdeasLabel_title}" for="title" />
+                    <h:inputText id="title" value="#{ideasController.selected.title}" title="#{bundle.IdeasTitle_title}" required="true" requiredMessage="#{bundle.IdeasRequiredMessage_title}"/>
+                    <h:outputLabel value="#{bundle.IdeasLabel_description}" for="description" />
+                    <h:inputTextarea rows="4" cols="30" id="description" value="#{ideasController.selected.description}" title="#{bundle.IdeasTitle_description}" required="true" requiredMessage="#{bundle.IdeasRequiredMessage_description}"/>
+                    <h:outputLabel value="#{bundle.IdeasLabel_aimsAndObjectives}" for="aimsAndObjectives" />
+                    <h:inputTextarea rows="4" cols="30" id="aimsAndObjectives" value="#{ideasController.selected.aimsAndObjectives}" title="#{bundle.IdeasTitle_aimsAndObjectives}" />
+                    <h:outputLabel value="#{bundle.IdeasLabel_academicQuestion}" for="academicQuestion" />
+                    <h:inputTextarea rows="4" cols="30" id="academicQuestion" value="#{ideasController.selected.academicQuestion}" title="#{bundle.IdeasTitle_academicQuestion}" />
+                    <h:outputLabel value="#{bundle.IdeasLabel_anticipatedDeliverables}" for="anticipatedDeliverables" />
+                    <h:inputTextarea rows="4" cols="30" id="anticipatedDeliverables" value="#{ideasController.selected.anticipatedDeliverables}" title="#{bundle.IdeasTitle_anticipatedDeliverables}" />
                     
                     <c:if test="#{peopleController.selected.type == 'Staff'}">
-                        <h:outputLabel value="#{bundle.EditIdeasLabel_status}" for="status"  />
-                        <h:selectOneMenu value="#{ideasController.selected.status}"  id="status" required="true" requiredMessage="#{bundle.EditIdeasRequiredMessage_status}">
+                        <h:outputLabel value="#{bundle.IdeasLabel_status}" for="status"  />
+                        <h:selectOneMenu value="#{ideasController.selected.status}"  id="status" required="true" requiredMessage="#{bundle.IdeasRequiredMessage_status}">
                                 <f:selectItem itemValue="Pending" itemLabel="Pending" />
                                 <f:selectItem itemValue="Available" itemLabel="Available" />
                                 <f:selectItem itemValue="Closed" itemLabel="Closed" />
                         </h:selectOneMenu>
                     </c:if>
                     <c:if test="#{peopleController.selected.type != 'Staff'}">
-                        <h:outputLabel value="#{bundle.EditIdeasLabel_status}" for="status"  />
-                        <h:selectOneMenu value="#{ideasController.selected.status}"  id="status" required="true" requiredMessage="#{bundle.EditIdeasRequiredMessage_status}">
+                        <h:outputLabel value="#{bundle.IdeasLabel_status}" for="status"  />
+                        <h:selectOneMenu value="#{ideasController.selected.status}"  id="status" required="true" requiredMessage="#{bundle.IdeasRequiredMessage_status}">
                                 <f:selectItem itemValue="Pending" itemLabel="Pending" />
                         </h:selectOneMenu>
                     </c:if>
                     
-                    <h:outputLabel value="#{bundle.CreateIdeasLabel_moderator}" for="moderator" />
-                    <h:selectOneMenu id="moderator" value="#{ideasController.selected.moderator}" title="#{bundle.CreateIdeasTitle_moderator}" >
+                    <h:outputLabel value="#{bundle.IdeasLabel_moderator}" for="moderator" />
+                    <h:selectOneMenu id="moderator" value="#{ideasController.selected.moderator}" title="#{bundle.IdeasTitle_moderator}" >
                         <f:selectItems value="#{peopleController.getByTypeAvailableSelectOne('Staff')}"/>
                     </h:selectOneMenu>
                     
-                    <h:outputLabel value="#{bundle.CreateIdeasLabel_student}" for="student" />
-                    <h:selectOneMenu id="student" value="#{ideasController.selected.student}" title="#{bundle.CreateIdeasTitle_student}" >
+                    <h:outputLabel value="#{bundle.IdeasLabel_student}" for="student" />
+                    <h:selectOneMenu id="student" value="#{ideasController.selected.student}" title="#{bundle.IdeasTitle_student}" >
                         <f:selectItems value="#{peopleController.getByTypeAvailableSelectOne('Student')}"/>
                     </h:selectOneMenu>
                     
-                    <h:outputLabel value="#{bundle.CreateIdeasLabel_organisation}" for="organisation" />
-                    <h:selectOneMenu id="organisation" value="#{ideasController.selected.organisation}" title="#{bundle.CreateIdeasTitle_organisation}" >
+                    <h:outputLabel value="#{bundle.IdeasLabel_organisation}" for="organisation" />
+                    <h:selectOneMenu id="organisation" value="#{ideasController.selected.organisation}" title="#{bundle.IdeasTitle_organisation}" >
                         <f:selectItems value="#{peopleController.getByTypeAvailableSelectOne('Organisation')}"/>
                     </h:selectOneMenu>
     
-                    <h:selectOneMenu id="submitter" class="hidden" value="#{ideasController.selected.submitter}" title="#{bundle.CreateIdeasTitle_submitter}" >
+                    <h:selectOneMenu id="submitter" class="hidden" value="#{ideasController.selected.submitter}" title="#{bundle.IdeasTitle_submitter}" >
                         <f:selectItems value="#{peopleController.getByTypeAvailableWithUserSelected()}"/>
                     </h:selectOneMenu>
                 </h:panelGrid>

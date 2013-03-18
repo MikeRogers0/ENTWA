@@ -13,28 +13,28 @@
             <h:form>
                 <h:panelGrid columns="2" class="table table-striped col2-spaced">
                     
-                    <h:outputLabel value="#{bundle.CreatePeopleLabel_name}" for="name" />
-                    <h:inputText id="name" value="#{peopleController.selected.name}" title="#{bundle.CreatePeopleTitle_name}" required="true" requiredMessage="#{bundle.CreatePeopleRequiredMessage_name}"/>
-                    <h:outputLabel value="#{bundle.CreatePeopleLabel_email}" for="email" />
-                    <h:inputText id="email" value="#{peopleController.selected.email}" title="#{bundle.CreatePeopleTitle_email}" required="true" requiredMessage="#{bundle.CreatePeopleRequiredMessage_email}"/>
-                    <h:outputLabel value="#{bundle.CreatePeopleLabel_type}" for="type" />
-                    <h:selectOneMenu id="type" value="#{peopleController.selected.type}" class="typeSecltor" title="#{bundle.CreatePeopleTitle_type}" required="true" requiredMessage="#{bundle.CreatePeopleRequiredMessage_type}">
+                    <h:outputLabel value="#{bundle.PeopleLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{peopleController.selected.name}" title="#{bundle.PeopleTitle_name}" required="true" requiredMessage="#{bundle.PeopleRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.PeopleLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{peopleController.selected.email}" title="#{bundle.PeopleTitle_email}" required="true" requiredMessage="#{bundle.PeopleRequiredMessage_email}"/>
+                    <h:outputLabel value="#{bundle.PeopleLabel_type}" for="type" />
+                    <h:selectOneMenu id="type" value="#{peopleController.selected.type}" class="typeSecltor" title="#{bundle.PeopleTitle_type}" required="true" requiredMessage="#{bundle.PeopleRequiredMessage_type}">
                             <f:selectItem itemValue="Student" itemLabel="Student" />
                             <f:selectItem itemValue="Staff" itemLabel="Staff" />
                             <f:selectItem itemValue="Organisation" itemLabel="Organisation" />
                             <f:ajax render="orgOptions" />
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreatePeopleLabel_password}" for="password" />
-                    <h:inputSecret id="password" value="#{peopleController.selected.password}" title="#{bundle.CreatePeopleTitle_password}" required="true" requiredMessage="#{bundle.CreatePeopleRequiredMessage_password}"/>
+                    <h:outputLabel value="#{bundle.PeopleLabel_password}" for="password" />
+                    <h:inputSecret id="password" value="#{peopleController.selected.password}" title="#{bundle.PeopleTitle_password}" required="true" requiredMessage="#{bundle.PeopleRequiredMessage_password}"/>
                 </h:panelGrid>
                 <h:panelGroup id="orgOptions">
                     <h:panelGrid columns="2" rendered="#{peopleController.selected.type == 'Organisation'}" class="org_details table table-striped col2-spaced">
-                        <h:outputLabel value="#{bundle.CreatePeopleLabel_orgName}" for="orgName" />
-                        <h:inputText id="orgName" value="#{peopleController.selected.orgName}" title="#{bundle.CreatePeopleTitle_orgName}" />
-                        <h:outputLabel value="#{bundle.CreatePeopleLabel_orgDescription}" for="orgDescription" />
-                        <h:inputTextarea rows="4" cols="30" id="orgDescription" value="#{peopleController.selected.orgDescription}" title="#{bundle.CreatePeopleTitle_orgDescription}" />
-                        <h:outputLabel value="#{bundle.CreatePeopleLabel_orgPhoneNumber}" for="orgPhoneNumber" />
-                        <h:inputText id="orgPhoneNumber" value="#{peopleController.selected.orgPhoneNumber}" title="#{bundle.CreatePeopleTitle_orgPhoneNumber}" />
+                        <h:outputLabel value="#{bundle.PeopleLabel_orgName}" for="orgName" />
+                        <h:inputText id="orgName" value="#{peopleController.selected.orgName}" title="#{bundle.PeopleTitle_orgName}" />
+                        <h:outputLabel value="#{bundle.PeopleLabel_orgDescription}" for="orgDescription" />
+                        <h:inputTextarea rows="4" cols="30" id="orgDescription" value="#{peopleController.selected.orgDescription}" title="#{bundle.PeopleTitle_orgDescription}" />
+                        <h:outputLabel value="#{bundle.PeopleLabel_orgPhoneNumber}" for="orgPhoneNumber" />
+                        <h:inputText id="orgPhoneNumber" value="#{peopleController.selected.orgPhoneNumber}" title="#{bundle.PeopleTitle_orgPhoneNumber}" />
                     </h:panelGrid>
                 </h:panelGroup>
                 <br />

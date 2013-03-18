@@ -12,46 +12,46 @@
         </ui:define>
         <ui:define name="body">
             <h:panelGrid columns="2" class="table table-striped">
-                <h:outputText value="#{bundle.ViewIdeasLabel_description}"/>
-                <h:outputText value="#{ideasController.selected.description}" title="#{bundle.ViewIdeasTitle_description}"/>
+                <h:outputText value="#{bundle.IdeasLabel_description}"/>
+                <h:outputText value="#{ideasController.selected.description}" title="#{bundle.IdeasTitle_description}"/>
 
-                <h:outputText value="#{bundle.ViewIdeasLabel_aimsAndObjectives}"/>
-                <h:outputText value="#{ideasController.selected.aimsAndObjectives}" title="#{bundle.ViewIdeasTitle_aimsAndObjectives}"/>
+                <h:outputText value="#{bundle.IdeasLabel_aimsAndObjectives}"/>
+                <h:outputText value="#{ideasController.selected.aimsAndObjectives}" title="#{bundle.IdeasTitle_aimsAndObjectives}"/>
 
-                <h:outputText value="#{bundle.ViewIdeasLabel_academicQuestion}"/>
-                <h:outputText value="#{ideasController.selected.academicQuestion}" title="#{bundle.ViewIdeasTitle_academicQuestion}"/>
+                <h:outputText value="#{bundle.IdeasLabel_academicQuestion}"/>
+                <h:outputText value="#{ideasController.selected.academicQuestion}" title="#{bundle.IdeasTitle_academicQuestion}"/>
 
 
-                <h:outputText value="#{bundle.ViewIdeasLabel_anticipatedDeliverables}"/>
-                <h:outputText value="#{ideasController.selected.anticipatedDeliverables}" title="#{bundle.ViewIdeasTitle_anticipatedDeliverables}"/>
+                <h:outputText value="#{bundle.IdeasLabel_anticipatedDeliverables}"/>
+                <h:outputText value="#{ideasController.selected.anticipatedDeliverables}" title="#{bundle.IdeasTitle_anticipatedDeliverables}"/>
                 
                 <c:if test="#{!empty ideasController.selected.organisation.name }">
                     
-                    <h:outputText value="#{bundle.ViewPeopleLabel_orgName}"/>
-                    <h:outputText value="#{ideasController.selected.organisation.orgName}" title="#{bundle.ViewPeopleTitle_orgName}"/>
+                    <h:outputText value="#{bundle.PeopleLabel_orgName}"/>
+                    <h:outputText value="#{ideasController.selected.organisation.orgName}" title="#{bundle.PeopleTitle_orgName}"/>
                     
-                    <h:outputText value="#{bundle.ViewPeopleLabel_orgDescription}"/>
-                    <h:outputText value="#{ideasController.selected.organisation.orgDescription}" title="#{bundle.ViewPeopleTitle_orgDescription}"/>
+                    <h:outputText value="#{bundle.PeopleLabel_orgDescription}"/>
+                    <h:outputText value="#{ideasController.selected.organisation.orgDescription}" title="#{bundle.PeopleTitle_orgDescription}"/>
                     
-                    <h:outputText value="#{bundle.ViewPeopleLabel_orgPhoneNumber}"/>
-                    <h:outputText value="#{ideasController.selected.organisation.orgPhoneNumber}" title="#{bundle.ViewPeopleTitle_orgPhoneNumber}"/>
+                    <h:outputText value="#{bundle.PeopleLabel_orgPhoneNumber}"/>
+                    <h:outputText value="#{ideasController.selected.organisation.orgPhoneNumber}" title="#{bundle.PeopleTitle_orgPhoneNumber}"/>
                     
                 </c:if>
 
-                <h:outputText value="#{bundle.ViewIdeasLabel_status}"/>
-                <h:outputText value="#{ideasController.selected.status}" title="#{bundle.ViewIdeasTitle_status}"/>
+                <h:outputText value="#{bundle.IdeasLabel_status}"/>
+                <h:outputText value="#{ideasController.selected.status}" title="#{bundle.IdeasTitle_status}"/>
 
-                <h:outputText value="#{bundle.ViewIdeasLabel_dateSubmitted}"/>
-                <h:outputText value="#{ideasController.selected.dateSubmitted}" title="#{bundle.ViewIdeasTitle_dateSubmitted}">
+                <h:outputText value="#{bundle.IdeasLabel_dateSubmitted}"/>
+                <h:outputText value="#{ideasController.selected.dateSubmitted}" title="#{bundle.IdeasTitle_dateSubmitted}">
                     <f:convertDateTime pattern="MM/dd/yyyy" />
                 </h:outputText>
 
-                <h:outputText value="#{bundle.ViewIdeasLabel_submitter}"/>
+                <h:outputText value="#{bundle.IdeasLabel_submitter}"/>
                 <h:outputLink value="mailto:#{ideasController.selected.submitter.email}">
                     <h:outputText value="#{ideasController.selected.submitter.name} (#{ideasController.selected.submitter.type})" />
                 </h:outputLink>
 
-                <h:outputText value="#{bundle.ViewIdeasLabel_organisation}"/>
+                <h:outputText value="#{bundle.IdeasLabel_organisation}"/>
                 <c:choose>
                     <c:when test="#{empty ideasController.selected.organisation.name and peopleController.selected.type == 'Organisation'}">
                         <h:form>
@@ -72,7 +72,7 @@
                 </c:choose>
 
 
-                <h:outputText value="#{bundle.ViewIdeasLabel_moderator}"/>
+                <h:outputText value="#{bundle.IdeasLabel_moderator}"/>
                 <c:choose>
                     <c:when test="#{empty ideasController.selected.moderator.name and peopleController.selected.type == 'Staff'}">
                         <h:form>
@@ -94,7 +94,7 @@
 
 
 
-                <h:outputText value="#{bundle.ViewIdeasLabel_student}"/>
+                <h:outputText value="#{bundle.IdeasLabel_student}"/>
 
                 <c:choose>
                     <c:when test="#{empty ideasController.selected.student.name and peopleController.selected.type == 'Student'}">
