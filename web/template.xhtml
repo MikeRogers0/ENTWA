@@ -66,10 +66,10 @@
                                 <h:commandLink action="#{peopleController.prepareEdit}" value="#{bundle.ViewPeopleEditLink}" class="btn" /> 
                             </c:when>   
                             <c:otherwise>
-                                <h:outputLabel for="email" value="Email" />
+                                <h:outputLabel for="email" value="#{bundle.PeopleLabel_email}" />
                                 <h:inputText id="email" value="#{peopleController.selected.email}" required="true" requiredMessage="#{bundle.EmailRequired}" />
                                 <br />
-                                <h:outputLabel for="password" value="Password" />
+                                <h:outputLabel for="password" value="#{bundle.PeopleLabel_password}" />
                                 <h:inputSecret id="password" value="#{peopleController.selected.password}" required="true" requiredMessage="#{bundle.PasswordRequired}" />
                                 <br />
                                 <h:commandButton value="Login" action="#{peopleController.login}" class="btn"  />
