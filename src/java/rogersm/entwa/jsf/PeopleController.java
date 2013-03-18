@@ -59,6 +59,8 @@ public class PeopleController implements Serializable {
 
     /**
      *
+     * Manages pagnation.
+     * 
      * @return
      */
     public PaginationHelper getPagination() {
@@ -90,6 +92,8 @@ public class PeopleController implements Serializable {
 
     /**
      *
+     * The person view page.
+     * 
      * @return
      */
     public String prepareView() {
@@ -100,6 +104,8 @@ public class PeopleController implements Serializable {
 
     /**
      *
+     * the register page
+     * 
      * @return
      */
     public String prepareCreate() {
@@ -110,6 +116,8 @@ public class PeopleController implements Serializable {
     
     /**
      *
+     * the my account page.
+     * 
      * @return
      */
     public String prepareAccount() {
@@ -118,6 +126,8 @@ public class PeopleController implements Serializable {
 
     /**
      *
+     * Create a user.
+     * 
      * @return
      */
     public String create() {
@@ -133,6 +143,8 @@ public class PeopleController implements Serializable {
 
     /**
      *
+     * Update account page
+     * 
      * @return
      */
     public String prepareEdit() {
@@ -143,6 +155,8 @@ public class PeopleController implements Serializable {
 
     /**
      *
+     * Updatea a users entity.
+     * 
      * @return
      */
     public String update() {
@@ -158,6 +172,8 @@ public class PeopleController implements Serializable {
 
     /**
      *
+     * Deletes a user.
+     * 
      * @return
      */
     public String destroy() {
@@ -171,6 +187,8 @@ public class PeopleController implements Serializable {
 
     /**
      *
+     * Deletes a user and sends them somewhere.
+     * 
      * @return
      */
     public String destroyAndView() {
@@ -212,6 +230,8 @@ public class PeopleController implements Serializable {
 
     /**
      *
+     * gets all the users in a list.
+     * 
      * @return
      */
     public DataModel getItems() {
@@ -231,6 +251,8 @@ public class PeopleController implements Serializable {
 
     /**
      *
+     * returns select list of all users.
+     * 
      * @return
      */
     public SelectItem[] getItemsAvailableSelectMany() {
@@ -239,6 +261,8 @@ public class PeopleController implements Serializable {
 
     /**
      *
+     * Returns select list of all users
+     * 
      * @return
      */
     public SelectItem[] getItemsAvailableSelectOne() {
@@ -247,6 +271,8 @@ public class PeopleController implements Serializable {
     
     /**
      *
+     * Finds all users by type and returns them.
+     * 
      * @param type
      * @return
      */
@@ -256,6 +282,8 @@ public class PeopleController implements Serializable {
     
     /**
      *
+     * Returns select with with current user selected.
+     * 
      * @return
      */
     public SelectItem[] getByTypeAvailableWithUserSelected() {
@@ -274,6 +302,8 @@ public class PeopleController implements Serializable {
     
     /**
      *
+     * method that logs in user.
+     * 
      * @return
      */
     public String login(){ 
@@ -297,6 +327,8 @@ public class PeopleController implements Serializable {
     
     /**
      *
+     * Session that logs out user.
+     * 
      * @return
      */
     public String logout(){

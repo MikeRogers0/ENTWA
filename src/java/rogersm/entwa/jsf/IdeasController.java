@@ -21,7 +21,9 @@ import javax.faces.model.SelectItem;
 
 /**
  *
- * @author MikeRogers
+ * The ideas controller
+ * 
+ * @author 447955
  */
 @ManagedBean(name = "ideasController")
 @SessionScoped
@@ -42,6 +44,8 @@ public class IdeasController implements Serializable {
 
     /**
      *
+     * Updates current model to be the one selected.
+     * 
      * @return
      */
     public Ideas getSelected() {
@@ -58,6 +62,8 @@ public class IdeasController implements Serializable {
 
     /**
      *
+     * Manages the pagination
+     * 
      * @return
      */
     public PaginationHelper getPagination() {
@@ -89,6 +95,8 @@ public class IdeasController implements Serializable {
 
     /**
      *
+     * Sends the user to the idea they clicked to view.
+     * 
      * @return
      */
     public String prepareView() {
@@ -99,6 +107,8 @@ public class IdeasController implements Serializable {
 
     /**
      *
+     * The submit idea page
+     * 
      * @return
      */
     public String prepareCreate() {
@@ -109,6 +119,8 @@ public class IdeasController implements Serializable {
 
     /**
      *
+     * Creates the idea. If it's sucessesful send them to the view page
+     * 
      * @return
      */
     public String create() {
@@ -124,6 +136,8 @@ public class IdeasController implements Serializable {
 
     /**
      *
+     * Sends users to the edit page
+     * 
      * @return
      */
     public String prepareEdit() {
@@ -134,6 +148,8 @@ public class IdeasController implements Serializable {
 
     /**
      *
+     * Updates the idea
+     * 
      * @return
      */
     public String update() {
@@ -149,6 +165,8 @@ public class IdeasController implements Serializable {
 
     /**
      *
+     * deletes idea
+     * 
      * @return
      */
     public String destroy() {
@@ -161,7 +179,7 @@ public class IdeasController implements Serializable {
     }
 
     /**
-     *
+     * Deletes idea and sends them to accoutn page.
      * @return
      */
     public String destroyAndView() {
@@ -177,12 +195,10 @@ public class IdeasController implements Serializable {
         }
     }
     
-    /*
-     * The search stuff
-     * 
-     */
     /**
      *
+     * The search function on the homepage
+     * 
      * @return
      */
     public String search(){
@@ -202,6 +218,8 @@ public class IdeasController implements Serializable {
 
     /**
      *
+     * If the search is blank, make sure it's null.
+     * 
      * @param search
      */
     public void setSearch(String search) {
@@ -211,7 +229,13 @@ public class IdeasController implements Serializable {
             this.search = null;
         }
     }
-
+    
+    
+    /**
+     *
+     * Deletes idea via facade.
+     * 
+     */
     private void performDestroy() {
         try {
             getFacade().remove(current);
@@ -220,7 +244,9 @@ public class IdeasController implements Serializable {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
     }
-
+    
+    
+    
     private void updateCurrentItem() {
         int count = getFacade().count();
         if (selectedItemIndex >= count) {
@@ -238,6 +264,8 @@ public class IdeasController implements Serializable {
 
     /**
      *
+     * Gets the items to show in a list. If there is a search make sure applied.
+     * 
      * @return
      */
     public DataModel getItems() {
@@ -252,6 +280,8 @@ public class IdeasController implements Serializable {
     
     /**
      *
+     * Filters items by user id.
+     * 
      * @param id
      * @return
      */
@@ -272,26 +302,32 @@ public class IdeasController implements Serializable {
 
     /**
      *
+     * Sends user to next page of stuff.
+     * 
      * @return
      */
     public String next() {
         getPagination().nextPage();
         recreateModel();
-        return "/people/account";
+        return "/index";
     }
 
     /**
      *
+     * Sends user to previosu page of stuff.
+     * 
      * @return
      */
     public String previous() {
         getPagination().previousPage();
         recreateModel();
-        return "/people/account";
+        return "/index";
     }
 
     /**
      *
+     * Fetches all the idea in a select list.
+     * 
      * @return
      */
     public SelectItem[] getItemsAvailableSelectMany() {
@@ -300,6 +336,8 @@ public class IdeasController implements Serializable {
 
     /**
      *
+     * Fetches all the idea in a select list.
+     * 
      * @return
      */
     public SelectItem[] getItemsAvailableSelectOne() {

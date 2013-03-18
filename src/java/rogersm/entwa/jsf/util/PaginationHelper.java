@@ -4,7 +4,7 @@ import javax.faces.model.DataModel;
 
 /**
  *
- * @author MikeRogers
+ * @author 447955
  */
 public abstract class PaginationHelper {
 
@@ -32,12 +32,16 @@ public abstract class PaginationHelper {
     public abstract DataModel createPageDataModel();
     /**
      *
+     * Allows models to be searched.
+     * 
      * @param search
      * @return
      */
     public abstract DataModel searchPageDataModel(String search);
     /**
      *
+     * Finds model by person assoicated with it.
+     * 
      * @param id
      * @return
      */

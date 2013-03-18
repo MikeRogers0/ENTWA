@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package rogersm.entwa.beans;
 
 import rogersm.entwa.entities.People;
@@ -13,7 +9,9 @@ import javax.persistence.TypedQuery;
 
 /**
  *
- * @author MikeRogers
+ * People Facade
+ * 
+ * @author 447955
  */
 @Stateless
 public class PeopleFacade extends AbstractFacade<People> {
@@ -38,6 +36,8 @@ public class PeopleFacade extends AbstractFacade<People> {
     
     /**
      *
+     * Lets me sort by the type of person they are. Useful for only showing users in a list.
+     * 
      * @param type
      * @return
      */
@@ -49,6 +49,8 @@ public class PeopleFacade extends AbstractFacade<People> {
     
     /**
      *
+     * Lets me find specifc users.
+     * 
      * @param id
      * @return
      */
@@ -60,6 +62,8 @@ public class PeopleFacade extends AbstractFacade<People> {
     
     /**
      *
+     * Used for the login, allows us to lookup a users email and password.
+     * 
      * @param email
      * @param password
      * @return

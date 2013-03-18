@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package rogersm.entwa.beans;
 
 import rogersm.entwa.entities.Ideas;
@@ -13,7 +9,9 @@ import javax.persistence.TypedQuery;
 
 /**
  *
- * @author MikeRogers
+ * Idea Facade
+ * 
+ * @author 447955
  */
 @Stateless
 public class IdeasFacade extends AbstractFacade<Ideas> {
@@ -38,6 +36,8 @@ public class IdeasFacade extends AbstractFacade<Ideas> {
     
     /**
      *
+     * Finds the idea by it's status, so i can stop pending status showing on homepage.
+     * 
      * @param status
      * @return
      */
@@ -48,7 +48,9 @@ public class IdeasFacade extends AbstractFacade<Ideas> {
     }
     
     /**
-     *
+     * 
+     * Finds idea by who is assoicated with them.
+     * 
      * @param id
      * @return
      */
@@ -64,6 +66,8 @@ public class IdeasFacade extends AbstractFacade<Ideas> {
     
     /**
      *
+     * Searches the titles of the entities and returns the relvant ones.
+     * 
      * @param search
      * @return
      */

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package rogersm.entwa.entities;
 
 import java.io.Serializable;
@@ -25,7 +21,9 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author MikeRogers
+ * Getters and setters for the people
+ * 
+ * @author 447955
  */
 @Entity
 @Table(catalog = "", schema = "APP")

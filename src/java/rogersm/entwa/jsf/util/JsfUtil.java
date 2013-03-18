@@ -9,12 +9,14 @@ import javax.faces.model.SelectItem;
 
 /**
  *
- * @author MikeRogers
+ * @author 447955
  */
 public class JsfUtil {
 
     /**
      *
+     * Generates select element list
+     * 
      * @param entities
      * @param selectOne
      * @return
@@ -24,7 +26,7 @@ public class JsfUtil {
         SelectItem[] items = new SelectItem[size];
         int i = 0;
         if (selectOne) {
-            items[0] = new SelectItem("", "---");
+            items[0] = new SelectItem("", "-- Select --");
             i++;
         }
         for (Object x : entities) {
@@ -35,6 +37,8 @@ public class JsfUtil {
 
     /**
      *
+     * Adds error message to page.
+     * 
      * @param ex
      * @param defaultMsg
      */
@@ -49,6 +53,8 @@ public class JsfUtil {
 
     /**
      *
+     * Adds list of error messages to page.
+     * 
      * @param messages
      */
     public static void addErrorMessages(List<String> messages) {
@@ -59,6 +65,8 @@ public class JsfUtil {
 
     /**
      *
+     * Adds error message to page.
+     * 
      * @param msg
      */
     public static void addErrorMessage(String msg) {
@@ -68,6 +76,8 @@ public class JsfUtil {
 
     /**
      *
+     * Adds sucesses message to page
+     * 
      * @param msg
      */
     public static void addSuccessMessage(String msg) {
@@ -77,6 +87,8 @@ public class JsfUtil {
 
     /**
      *
+     * Requests a posted detail from a form.
+     * 
      * @param key
      * @return
      */
@@ -86,6 +98,8 @@ public class JsfUtil {
 
     /**
      *
+     * Gets object from form.
+     * 
      * @param requestParameterName
      * @param converter
      * @param component
