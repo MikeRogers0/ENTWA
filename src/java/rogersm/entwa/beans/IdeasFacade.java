@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -75,6 +76,23 @@ public class IdeasFacade extends AbstractFacade<Ideas> {
         TypedQuery <Ideas> query = em.createNamedQuery("Ideas.searchByTitle", Ideas.class)
                 .setParameter("title", search); 
         List<Ideas> results = query.getResultList(); 
+        return  results;
+    }
+    
+     /**
+     *
+     * Searches the titles and description of the entities and returns the relvant ones.
+     * Based on http://weblogs.java.net/blog/mb124283/archive/2007/04/java_persistenc.html 
+     * 
+     * @param search
+     * @return
+     */
+    public List searchItems(String search){
+        // Search the title and the 
+        Query query = em.createQuery("SELECT i FROM Ideas i WHERE lower(i.title) LIKE lower(:title) OR lower(i.description) LIKE lower(:description)")
+                .setParameter("title", "%"+search+"%")
+                .setParameter("description", "%"+search+"%");
+        List<Ideas> results = query.getResultList();
         return  results;
     }
 }

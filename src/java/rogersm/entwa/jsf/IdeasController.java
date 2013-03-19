@@ -81,7 +81,7 @@ public class IdeasController implements Serializable {
 
                 @Override
                 public DataModel searchPageDataModel(String search) {
-                    return new ListDataModel(getFacade().searchByTitle(search));
+                    return new ListDataModel(getFacade().searchItems(search));
                 }
                 
                 @Override
