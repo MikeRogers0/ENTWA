@@ -17,7 +17,7 @@
             <div class="navbar">
                 <div class="navbar-inner">
                     <h:form styleClass="form-inline">
-                        <h:commandLink action="/index" value="MSc Ideas Search" class="brand" immediate="true"/>
+                        <h:commandLink action="/index?faces-redirect=true" value="MSc Ideas Search" class="brand" immediate="true"/>
                     </h:form>
                     <c:if test="#{!empty peopleController.selected.name}">
                         <h:form styleClass="form-inline">
@@ -85,7 +85,10 @@
         </div>
         <div id="footer">
             <div class="container">
+                <h:form>
                 <p>By 447955 for ENTWA</p>
+                <p><h:commandLink action="/index?faces-redirect=true" value="MSc Ideas Search Artefact"  immediate="true"/> | <h:commandLink action="/start?faces-redirect=true" value="Start Page"  immediate="true"/></p>
+                </h:form>
             </div>
         </div>
     </h:body>

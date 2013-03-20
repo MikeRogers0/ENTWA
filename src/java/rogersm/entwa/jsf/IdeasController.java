@@ -269,11 +269,12 @@ public class IdeasController implements Serializable {
      * @return
      */
     public DataModel getItems() {
-        if (items == null) {
-            items = getPagination().createPageDataModel();
-        }
+        items = null;
         if (search != null && !search.equals("")) {
             items = getPagination().searchPageDataModel(search);
+        }
+        if (items == null) {
+            items = getPagination().createPageDataModel();
         }
         return items;
     }
